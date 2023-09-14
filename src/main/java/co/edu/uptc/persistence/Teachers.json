@@ -1,0 +1,38 @@
+[
+  {
+    "id": "123445345345345",
+    "director": false,
+    "name": "porfesor",
+    "lastName": "chupapipi",
+    "phone": "1234",
+    "email": "a@a",
+    "account": {
+      "user": "user123",
+      "password": "pass124124"
+    }
+  }
+,{
+  "id": "123445345345345",
+  "director": false,
+  "name": "profesor",
+  "lastName": "chupapipi",
+  "phone": "1234",
+  "email": "a@a",
+  "account": {
+    "user": "user123",
+    "password": "pass124124"
+  }
+}
+,{
+  "id": "1003661120",
+  "director": true,
+  "name": "Alvaro",
+  "lastName": "Perez",
+  "phone": "3178993402",
+  "email": "Alvaro.perez@uptc.edu.co",
+  "account": {
+    "user": "Alvaro.Perez5",
+    "password": "Alvaro3178"
+  }
+}
+]

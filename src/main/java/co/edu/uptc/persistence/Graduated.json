@@ -1,0 +1,32 @@
+[
+  {
+    "estadoEmp": true,
+    "nombEmpresa": "IBM",
+    "cargo": "Pasante",
+    "id": "201809456",
+    "egresado": true,
+    "name": "Daniel",
+    "lastName": "Espinosa",
+    "phone": "3135669845",
+    "email": "Daniel.espinosa@uptc.edu.co",
+    "account": {
+      "user": "Daniel.Espinosa3",
+      "password": "Daniel3135"
+    }
+  }
+,{
+  "estadoEmp": false,
+  "nombEmpresa": "################",
+  "cargo": "################",
+  "id": "201799126",
+  "egresado": true,
+  "name": "Sofia",
+  "lastName": "Granados",
+  "phone": "3125669045",
+  "email": "Sofia.granados@uptc.edu.co",
+  "account": {
+    "user": "Sofia.Granados4",
+    "password": "Sofia3125"
+  }
+}
+]

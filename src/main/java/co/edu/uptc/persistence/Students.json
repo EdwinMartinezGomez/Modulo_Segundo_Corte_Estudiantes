@@ -1,0 +1,38 @@
+[
+  {
+    "id": "123445345345345",
+    "egresado": true,
+    "name": "Estudiante",
+    "lastName": "Uno",
+    "phone": "1234",
+    "email": "a@a",
+    "account": {
+      "user": "user123",
+      "password": "pass124124"
+    }
+  }
+,{
+  "id": "202209456",
+  "egresado": false,
+  "name": "Juan ",
+  "lastName": "Munoz",
+  "phone": "3104567980",
+  "email": "Juan.munoz@uptc.edu.co",
+  "account": {
+    "user": "Juan.Munoz1",
+    "password": "Juan3104"
+  }
+}
+,{
+  "id": "202128044",
+  "egresado": false,
+  "name": "Luis ",
+  "lastName": "Robelto",
+  "phone": "3103695003",
+  "email": "luis.robelto@uptc.edu.co",
+  "account": {
+    "user": "Luis.Robelto2",
+    "password": "Luis3103"
+  }
+}
+]
