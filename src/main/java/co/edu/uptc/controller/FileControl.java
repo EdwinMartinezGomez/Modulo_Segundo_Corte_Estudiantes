@@ -69,14 +69,14 @@ public class FileControl {
         file = new File(namefile);
         List<Student> aux = null;
 
-        try (Reader reader = new FileReader(path + namefile + ext)) {
+        try (Reader reader = new FileReader(path + file + ext)) {
 
             aux = gson.fromJson(reader, new TypeToken<List<Student>>() {
             }.getType());
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
 
 

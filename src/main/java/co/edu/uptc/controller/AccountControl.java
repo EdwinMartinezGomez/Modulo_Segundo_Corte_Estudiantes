@@ -56,9 +56,10 @@ public class AccountControl {
 
 	}*/
 
-    public String showStudentsAccpo() {// Mostrar estudiantes
+    public List<Student> showStudentsAccpo() {// Mostrar estudiantes
         cuentas = fc.readFileStudents("Students");
-        String accounts = "-------------------------------------------------------------------";
+        return cuentas;
+        /*String accounts = "-------------------------------------------------------------------";
 
         for (int i = 0; i < cuentas.size(); i++) {
 
@@ -76,7 +77,7 @@ public class AccountControl {
         }
 
         accounts += "\n-------------------------------------------------------------------";
-        return accounts;
+        return accounts;*/
     }
 
 

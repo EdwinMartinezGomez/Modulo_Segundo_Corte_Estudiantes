@@ -1,6 +1,11 @@
 package co.edu.uptc.view;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import co.edu.uptc.controller.AccountControl;
+import co.edu.uptc.model.Student;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -14,20 +19,24 @@ import javafx.stage.Stage;
 
 public class pruebas  extends Application{
     public  void start(Stage primaryStage)    {
-        TableView<Personans> tableView = new TableView<>();
-        TableColumn<Personans, String> colNombre = new TableColumn<>("Nombre");
-        TableColumn<Personans, String> colApellido = new TableColumn<>("Apellido");
+        TableView<Student> tableView = new TableView<>();
+        TableColumn<Student, String> colNombre = new TableColumn<>("Nombre");
+        TableColumn<Student, String> colApellido = new TableColumn<>("Apellido");
 
         tableView.getColumns().addAll(colNombre, colApellido);
 
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colApellido.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         Personans p1 = new Personans("Juan", "Perez");
         Personans p2 = new Personans("Maria", "Loza");
         Personans p3 = new Personans("Adriana", "Mendez");
-
-        tableView.getItems().addAll(p1, p2, p3);
+        AccountControl ac=new AccountControl();
+        List<Student> n=ac.showStudentsAccpo();
+        /*n.add(p1);
+        n.add(p2);
+        n.add(p3);*/
+        tableView.getItems().addAll(n);
 
         StackPane root = new StackPane();
         root.getChildren().add(tableView);

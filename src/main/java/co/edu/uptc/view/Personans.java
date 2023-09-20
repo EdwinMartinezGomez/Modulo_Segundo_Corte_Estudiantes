@@ -5,12 +5,25 @@ public class Personans {
 
     private String nombre;
     private String apellido;
-
+    private int age;
 
     public Personans (String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
 
+    }
+
+    public Personans(String nombre, int age) {
+        this.nombre = nombre;
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getNombre() {
@@ -34,6 +47,7 @@ public class Personans {
         return "Personans{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", age=" + age +
                 '}';
     }
 }

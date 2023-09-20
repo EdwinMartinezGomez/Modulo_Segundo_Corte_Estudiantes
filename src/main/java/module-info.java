@@ -12,6 +12,7 @@ module co.edu.uptc {
     requires com.google.gson;
 
     opens co.edu.uptc.controller to com.google.gson;
+    opens co.edu.uptc.model to com.google.gson, javafx.base;
     opens co.edu.uptc.view to javafx.fxml;
     exports co.edu.uptc.view;
 }
