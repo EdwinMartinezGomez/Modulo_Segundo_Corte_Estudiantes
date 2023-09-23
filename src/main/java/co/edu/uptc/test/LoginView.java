@@ -137,7 +137,7 @@ public class LoginView {
 
         id = this.util.inputString("\tType your identification: ", errorMessage);
 
-        return loginController.signin(names,lastNames,id,this.roles[roleIndex-1]);
+        return loginController.signin(names,lastNames,id,"131531","aeadsad@asdasd.com",this.roles[roleIndex-1]);
     }
 
     public boolean changePassword(){

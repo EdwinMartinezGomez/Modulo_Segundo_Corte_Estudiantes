@@ -107,8 +107,8 @@ public class LoginController {
      * @return control boolean, if something fails the process is canceled.
     * 
  */
-    public boolean signin(String name, String lastName, String id, String role){
-       if(personController.addPerson(id, name, lastName, role)){
+    public boolean signin(String name, String lastName, String id,String phone,String email, String role){
+       if(personController.addPerson(id, name, lastName,phone,email, role)){
             Person person = personController.findPersonById(id);
             if (acc.addAccount(person.getId(), person.getName(), person.getLastname(), role)) {
                 Account account = acc.findAccount(acc.getUsername(), acc.getPassword());

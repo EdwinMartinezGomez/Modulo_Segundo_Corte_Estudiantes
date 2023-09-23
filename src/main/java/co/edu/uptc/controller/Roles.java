@@ -5,5 +5,5 @@ package co.edu.uptc.controller;
  * @author Edwin Martinez
  */
 public enum Roles {
-    DIRECTOR,STUDENT,SECRETARY,PROFESSOR,ADMINISTRATOR
+    DIRECTOR,STUDENT,SECRETARY,PROFESSOR,ADMINISTRATOR,GRADUATED
 }

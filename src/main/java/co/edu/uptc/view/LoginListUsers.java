@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import co.edu.uptc.model.Account;
+import co.edu.uptc.model.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -20,10 +21,12 @@ public class LoginListUsers extends Header{
     BorderPane borderPane;
     TableView table;
     TableColumn idColumn;
-    TableColumn userNameColumn;
-    TableColumn passwordColumn;
+    TableColumn nameColumn;
+    TableColumn lastNameColumn;
     TableColumn roleColumn;
     TableColumn emailColumn;
+    TableColumn phoneColumn;
+    TableColumn emailGeneratedColumn;
     ObservableList<Account> accountList = FXCollections.observableArrayList();
 
     /**
@@ -97,31 +100,36 @@ public class LoginListUsers extends Header{
      */
     private void creationColumns() {
         idColumn = new TableColumn<Account, String> ("Id");
-        idColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("id"));
 
-        userNameColumn = new TableColumn<Account, String> ("User Name");
-        userNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
+        nameColumn = new TableColumn<Account, String> ("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
 
-        passwordColumn = new TableColumn<Account, String> ("Password");
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
+        lastNameColumn = new TableColumn<Account, String> ("Last Name");
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
 
         roleColumn = new TableColumn<Account, String> ("Rol");
-        roleColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("role"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("role"));
 
         emailColumn = new TableColumn<Account, String> ("Email");
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
-
-        emailColumn = new TableColumn<Account, String>("Actions");
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("Actions"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
+        phoneColumn = new TableColumn<Account, String> ("Phone");
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
+        emailGeneratedColumn = new TableColumn<Account, String> ("email generated");
+        emailGeneratedColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
+        /*emailColumn = new TableColumn<Account, String>("Actions");
+        emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("Actions"));*/
 
 
         table.getColumns().add(idColumn);
-        table.getColumns().add(userNameColumn);
-        table.getColumns().add(passwordColumn);
+        table.getColumns().add(nameColumn);
+        table.getColumns().add(lastNameColumn);
         table.getColumns().add(roleColumn);
         table.getColumns().add(emailColumn);
+        table.getColumns().add(phoneColumn);
+        table.getColumns().add(emailGeneratedColumn);
 
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
 

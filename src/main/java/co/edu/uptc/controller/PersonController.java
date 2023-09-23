@@ -47,8 +47,8 @@ public class PersonController {
      * @param role the institution role
      * @return true if the person was added to the collection. False if not.
      */
-    public boolean addPerson(String id, String name, String lastName, String role){
-        Person newPerson = this.createPersonByRole(id, name, lastName, role);
+    public boolean addPerson(String id, String name, String lastName,String phone,String email, String role){
+        Person newPerson = this.createPersonByRole(id, name, lastName,phone,email, role);
         for (Person per : this.personCollection){
             if (per.getId().equals(newPerson.getId())) return false;
         }
@@ -117,7 +117,7 @@ public class PersonController {
      * @return a Person Object with te
      */
     public Person clonePerson(Person p) {
-        return this.createPersonByRole(p.getId(), p.getName(), p.getLastname(), p.getAccount().getRole());
+        return this.createPersonByRole(p.getId(), p.getName(), p.getLastname(),p.getPhone(),p.getEmail(), p.getAccount().getRole());
     }
 
     /**
@@ -135,7 +135,7 @@ public class PersonController {
         Person newPerson = null;
         switch (typePerson){
             case STUDENT :
-                newPerson = new Student(id, name, lastName, phone, account, email);
+                newPerson = new Student(id, name, lastName, phone,email);
                 break;
             case PROFESSOR, DIRECTOR:
                 newPerson = new Professor(id, name, lastName,phone, email);
@@ -145,6 +145,9 @@ public class PersonController {
                 break;
             case SECRETARY:
                 newPerson = new Secretary(id, name, lastName,phone, email);
+                break;
+            case GRADUATED:
+                newPerson=new Graduated(id,name,lastName,phone,email);
                 break;
         }
 

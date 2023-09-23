@@ -2,10 +2,7 @@ package co.edu.uptc.utilities;
 
 import co.edu.uptc.model.Account;
 import co.edu.uptc.model.Person;
-import co.edu.uptc.model.persontypes.Administrator;
-import co.edu.uptc.model.persontypes.Professor;
-import co.edu.uptc.model.persontypes.Secretary;
-import co.edu.uptc.model.persontypes.Student;
+import co.edu.uptc.model.persontypes.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -25,9 +22,9 @@ public class JsonStorageUtilities {
     //cuando agreguemos algo, no borre el resto
     private List<Person> existingContentsPersons = new ArrayList<>();
     private List<Account> existingContentsAccounts = new ArrayList<>();
-    private static final String FILEPATH = "./src/main/java/co/edu/login.uptc/persistence/";
+    private static final String FILEPATH = "src/main/java/co/edu/uptc/persistence/";
     private static final String EXTENSION = ".json";
-    private static final String FILEPATHPEOPLE = "./src/main/java/co/edu/login.uptc/persistence/people.json";
+    private static final String FILEPATHPEOPLE = "src/main/java/co/edu/uptc/persistence/people.json";
 
     public JsonStorageUtilities(){
         //El gson esta inicializado asi para que se escriba en cascada y no en una misma linea
@@ -108,19 +105,22 @@ public class JsonStorageUtilities {
             rol = person.getAccount().getRole();
             switch (rol){
                 case "STUDENT":
-                    existingContentsPersons.add(new Student(person.getId(),person.getName(),person.getLastname(),person.getAccount()));
+                    existingContentsPersons.add(new Student(person.getId(),person.getName(),person.getLastname(), person.getPhone(), person.getEmail(),person.getAccount()));
                     break;
                 case "PROFESSOR":
-                    existingContentsPersons.add(new Professor(person.getId(),person.getName(),person.getLastname(), person.getAccount()));
+                    existingContentsPersons.add(new Professor(person.getId(),person.getName(),person.getLastname(), person.getAccount(),person.getEmail(),person.getPhone()));
                     break;
                 case "ADMINISTRATOR":
-                    existingContentsPersons.add(new Administrator(person.getId(),person.getName(),person.getLastname(), person.getAccount()));
+                    existingContentsPersons.add(new Administrator(person.getId(),person.getName(),person.getLastname(), person.getAccount(),person.getEmail(),person.getPhone()));
                     break;
                 case "SECRETARY":
-                    existingContentsPersons.add(new Secretary(person.getId(),person.getName(),person.getLastname(), person.getAccount()));
+                    existingContentsPersons.add(new Secretary(person.getId(),person.getName(),person.getLastname(), person.getPhone(), person.getEmail(),person.getAccount()));
                     break;
                 case "DIRECTOR":
-                    existingContentsPersons.add(new Administrator(person.getId(),person.getName(),person.getLastname(), person.getAccount()));
+                    existingContentsPersons.add(new Administrator(person.getId(),person.getName(),person.getLastname(), person.getAccount(),person.getEmail(),person.getPhone()));
+                    break;
+                case "GRADUATED":
+                    existingContentsPersons.add(new Graduated(person.getId(),person.getName(),person.getLastname(), person.getPhone(), person.getEmail(),person.getAccount()));
                     break;
             }
         }

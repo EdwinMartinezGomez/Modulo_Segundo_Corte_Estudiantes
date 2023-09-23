@@ -27,10 +27,16 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
     private HBox lastNameField;
     private HBox idField;
     private HBox roleField;
+    private HBox phoneField;
+    private HBox emailField;
     private Label nameError;
     private Label lastNameError;
     private Label idError;
+    private Label emailError;
+    private Label phoneError;
     private TextField name;
+    private TextField phone;
+    private TextField email;
     private TextField lastName;
     private TextField id;
     private ChoiceBox<String> roles;
@@ -69,10 +75,12 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.settingLastNameField();
         this.settingIdField();
         this.settingRoleField();
+        this.settingPhoneField();
+        this.settingEmailField();
         this.settingSummitButton();
         this.settingMessage();
 
-        VBox formContainer = new VBox(this.roleField,this.nameField, this.lastNameField, this.idField, this.summit);
+        VBox formContainer = new VBox(this.roleField,this.nameField, this.lastNameField, this.idField,this.phoneField,this.emailField, this.summit);
         formContainer.setId("form");
         formContainer.setSpacing(10);
         formContainer.setAlignment(Pos.CENTER);
@@ -232,7 +240,44 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.messageContainer.getChildren().add(this.message);
         this.messageContainer.setVisible(false);
     }
-
+    public void settingPhoneField(){
+        this.phoneField =new HBox();
+        this.phoneField.setAlignment(Pos.CENTER);
+        Label phoneLabel=new Label("Phone");
+        phoneLabel.getStyleClass().add("tag");
+        this.phone=new TextField();
+        this.phone.getStyleClass().add("input");
+        this.phone.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
+            validateIdStyle(this.phone, this.phoneError, newValue);
+        }));
+        this.phoneError=new Label();
+        this.phoneError.getStyleClass().add("errorLabel");
+        this.phoneError.setVisible(false);
+        VBox labelContainer = new VBox(phoneLabel);
+        VBox inputContainer = new VBox(this.phone, this.phoneError);
+        inputContainer.setAlignment(Pos.CENTER);
+        this.phoneField.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+    }
+    public void settingEmailField(){
+        this.emailField =new HBox();
+        this.emailField.setAlignment(Pos.CENTER);
+        Label phoneLabel=new Label("Email");
+        phoneLabel.getStyleClass().add("tag");
+        this.email=new TextField();
+        this.email.getStyleClass().add("input");
+        this.email.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
+            validateIdStyle(this.email, this.emailError, newValue);
+        }));
+        this.emailError=new Label();
+        this.emailError.getStyleClass().add("errorLabel");
+        this.emailError.setVisible(false);
+        VBox labelContainer = new VBox(phoneLabel);
+        VBox inputContainer = new VBox(this.email, this.emailError);
+        inputContainer.setAlignment(Pos.CENTER);
+        this.emailField.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+    }
     /**
      * Validates the input style and displays appropriate error messages for the ID field.
      *
@@ -337,7 +382,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         if (e.getSource() == this.summit){
             this.roles.requestFocus();
             if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText())){
-                boolean respone = this.parent.controller.signin(this.name.getText(),this.lastName.getText(), this.id.getText(), this.roles.getValue());
+                boolean respone = this.parent.controller.signin(this.name.getText(),this.lastName.getText(), this.id.getText(),this.phone.getText(),this.email.getText(), this.roles.getValue());
                 if (respone){
                     this.parent.loginListUsers.addAccount(this.parent.controller.getPersonController().findPersonById(this.id.getText()).getAccount());
                     this.message.setText("Añadido con éxito!");
