@@ -15,4 +15,5 @@ module co.edu.uptc {
     opens co.edu.uptc.model to com.google.gson, javafx.base;
     opens co.edu.uptc.view to javafx.fxml;
     exports co.edu.uptc.view;
+    opens co.edu.uptc.model.persontypes to com.google.gson, javafx.base;
 }

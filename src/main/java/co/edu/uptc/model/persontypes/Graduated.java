@@ -1,15 +1,17 @@
-package co.edu.uptc.model;
+package co.edu.uptc.model.persontypes;
+
+import co.edu.uptc.model.Account;
+import co.edu.uptc.model.persontypes.Student;
 
 public class Graduated  extends Student {
     private boolean estadoEmp;
     private String nombEmpresa;
     private String cargo;
 
-    public Graduated() {
 
-    }
 
     public Graduated(boolean estadoEmp, String nombEmpresa, String cargo) {
+        super();
         this.estadoEmp = estadoEmp;
         this.nombEmpresa = nombEmpresa;
         this.cargo = cargo;
@@ -24,7 +26,7 @@ public class Graduated  extends Student {
 
     public Graduated(String name, String lastName, String phone, String email, Account account, String id,
                      boolean egresado, boolean estadoEmp, String nombEmpresa, String cargo) {
-        super(name, lastName, phone, email, account, id, egresado);
+        super(name, lastName, phone, email, account, id);
         this.estadoEmp = estadoEmp;
         this.nombEmpresa = nombEmpresa;
         this.cargo = cargo;
