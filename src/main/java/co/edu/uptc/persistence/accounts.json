@@ -49,6 +49,13 @@
     "email": "maria.rodriguez01@uptc.edu.co"
   },
   {
+    "id": "202210815",
+    "userName": "edwin.martinez",
+    "password": "52SYOcd",
+    "role": "STUDENT",
+    "email": "edwin.martinez@login.uptc.edu.co"
+  },
+  {
     "id": "4387582",
     "userName": "maria.torres",
     "password": "48IAGqy",
@@ -70,18 +77,18 @@
     "email": "fredy.alarcon@uptc.edu.co"
   },
   {
-    "id": "2020154",
-    "userName": "juan.velandia",
-    "password": "njksAPO293",
-    "role": "STUDENT",
-    "email": "juan.velandia@uptc.edu.co"
-  },
-  {
     "id": "32589",
     "userName": "jose.salamanca",
     "password": "fh543YY",
     "role": "STUDENT",
     "email": "jose.salamanca@uptc.edu.co"
+  },
+  {
+    "id": "2020154",
+    "userName": "juan.velandia",
+    "password": "njksAPO293",
+    "role": "STUDENT",
+    "email": "juan.velandia@uptc.edu.co"
   },
   {
     "id": "1006784563",

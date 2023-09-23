@@ -3,10 +3,14 @@ package co.edu.uptc.view;
 import co.edu.uptc.model.Account;
 import co.edu.uptc.model.ClaseAux;
 import co.edu.uptc.model.Person;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,7 +21,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 
-public class LoginListUsers extends Header{
+public class LoginListUsers extends Header  {
     LoginView parent;
     BorderPane borderPane;
     TableView table;
@@ -29,6 +33,7 @@ public class LoginListUsers extends Header{
     TableColumn emailColumn;
     TableColumn phoneColumn;
     TableColumn emailGeneratedColumn;
+    ClaseAux claseAux;
     ObservableList<Person> PersonList = FXCollections.observableArrayList();
     //ObservableList<Account> accountList=FXCollections.observableArrayList();
     ObservableList<ClaseAux> aux=FXCollections.observableArrayList();
@@ -132,10 +137,25 @@ public class LoginListUsers extends Header{
         phoneColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("phone"));
         emailGeneratedColumn = new TableColumn<ClaseAux, String> ("email generated");
         emailGeneratedColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("emailGenerado"));
-        actionColumn = new TableColumn<ClaseAux, String>("Actions");
-        actionColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("bt"));
-
-
+        actionColumn = new TableColumn<ClaseAux, Button>("Actions");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux,Button>("bt"));
+        actionColumn.setCellFactory(column -> {
+            return new TableCell<ClaseAux, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(item);
+                        item.setOnAction(event -> {
+                            ClaseAux rowData = getTableView().getItems().get(getIndex());
+                            System.out.println(rowData.getName());
+                        });
+                    }
+                }
+            };
+        });
         table.getColumns().add(idColumn);
         table.getColumns().add(nameColumn);
         table.getColumns().add(lastNameColumn);
@@ -147,7 +167,6 @@ public class LoginListUsers extends Header{
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
-
 
 
 }

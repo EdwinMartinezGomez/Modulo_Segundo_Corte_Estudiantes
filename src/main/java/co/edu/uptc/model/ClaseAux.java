@@ -1,8 +1,10 @@
 package co.edu.uptc.model;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class ClaseAux {
+public class ClaseAux  {
     private String id;
     private String name;
     private String lastname;
@@ -22,7 +24,6 @@ public class ClaseAux {
         this.emailGenerado = emailGenerado;
         this.bt=bt;
     }
-
     public Button getBt() {
         return bt;
     }
