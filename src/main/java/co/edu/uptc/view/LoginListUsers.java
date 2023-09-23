@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import co.edu.uptc.model.Account;
+import co.edu.uptc.model.ClaseAux;
 import co.edu.uptc.model.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,11 +25,13 @@ public class LoginListUsers extends Header{
     TableColumn nameColumn;
     TableColumn lastNameColumn;
     TableColumn roleColumn;
+    TableColumn actionColumn;
     TableColumn emailColumn;
     TableColumn phoneColumn;
     TableColumn emailGeneratedColumn;
-    ObservableList<Account> accountList = FXCollections.observableArrayList();
-
+    ObservableList<Person> PersonList = FXCollections.observableArrayList();
+    //ObservableList<Account> accountList=FXCollections.observableArrayList();
+    ObservableList<ClaseAux> aux=FXCollections.observableArrayList();
     /**
      * Constructor of the LoginListUsers class.
      * @param loginView The parent LoginView instance.
@@ -38,7 +41,7 @@ public class LoginListUsers extends Header{
         super(home);
         this.parent = loginView;
         borderPane = new BorderPane();
-        table = new TableView<Account>();
+        table = new TableView<Person>();
         //addingRegisters();
         creationColumns();
     }
@@ -49,7 +52,7 @@ public class LoginListUsers extends Header{
      */
     public Scene loginListUsers(){
         updateTable();
-        table.setItems(accountList);
+        table.setItems(aux);
         borderPane.setCenter(table);
         HBox header = this.getHeader();
         this.setOption("Ver cuentas");
@@ -61,29 +64,41 @@ public class LoginListUsers extends Header{
 
     // Método para actualizar la tabla con las cuentas actuales
     private void updateTable() {
-        List<Account> updatedAccounts = parent.controller.getPersonController().getAccounts();
-
+        List<Person> updatedAccounts = parent.controller.getPersonController().getPersons();
+        List<Account> accounts=parent.controller.getPersonController().getAccounts();
         // Comparar las cuentas actuales con las cuentas en la tabla
         // Agregar cuentas nuevas si las hay
-        for (Account updatedAccount : updatedAccounts) {
-            if (!accountList.contains(updatedAccount)) {
-                addAccount(updatedAccount);
+        for (Person updatedAccount : updatedAccounts) {
+            if (!PersonList.contains(updatedAccount)) {
+                addPerson(updatedAccount);
             }
         }
-
+        /*for (Account a:accounts){
+            if(!accountList.contains(a)){
+                addAccount(a);
+            }
+        }*/
         // Eliminar cuentas que ya no están presentes
-        accountList.removeIf(account -> !updatedAccounts.contains(account));
+        PersonList.removeIf(account -> !updatedAccounts.contains(account));
+        //accountList.removeIf(account -> !accounts.contains(account));
+        for (Person p:this.PersonList) {
+            ClaseAux c=new ClaseAux(p.getId(),p.getName(),p.getLastname(),p.getPhone(),p.getEmail(),p.getAccount().getRole(),p.getAccount().getEmail(),new Button("Modificar"));
+            aux.add(c);
+        }
     }
-    public void removeAccount(Account account) {
+    /*public void removeAccount(Account account) {
         accountList.remove(account);
-    }
+    }*/
     /**
      * Method to add an account to the table.
      * @param account User account to be added.
      */
-    public void addAccount(Account account){
-        accountList.add(account);
+    public void addPerson(Person account){
+        PersonList.add(account);
     }
+    /*public void addAccount(Account account){
+        accountList.add(account);
+    }*/
 
 //    /**
 //     * Private method to add records to the
@@ -99,26 +114,26 @@ public class LoginListUsers extends Header{
      *Private method to create the columns of the table.
      */
     private void creationColumns() {
-        idColumn = new TableColumn<Account, String> ("Id");
-        idColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("id"));
+        idColumn = new TableColumn<ClaseAux, String> ("Id");
+        idColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("id"));
 
-        nameColumn = new TableColumn<Account, String> ("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        nameColumn = new TableColumn<ClaseAux, String> ("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("name"));
 
-        lastNameColumn = new TableColumn<Account, String> ("Last Name");
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        lastNameColumn = new TableColumn<ClaseAux, String> ("Last Name");
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("lastname"));
 
-        roleColumn = new TableColumn<Account, String> ("Rol");
-        roleColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("role"));
+        roleColumn = new TableColumn<ClaseAux, String> ("Rol");
+        roleColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("role"));
 
-        emailColumn = new TableColumn<Account, String> ("Email");
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
-        phoneColumn = new TableColumn<Account, String> ("Phone");
-        phoneColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
-        emailGeneratedColumn = new TableColumn<Account, String> ("email generated");
-        emailGeneratedColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
-        /*emailColumn = new TableColumn<Account, String>("Actions");
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("Actions"));*/
+        emailColumn = new TableColumn<ClaseAux, String> ("Email");
+        emailColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("email"));
+        phoneColumn = new TableColumn<ClaseAux, String> ("Phone");
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("phone"));
+        emailGeneratedColumn = new TableColumn<ClaseAux, String> ("email generated");
+        emailGeneratedColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("emailGenerado"));
+        actionColumn = new TableColumn<ClaseAux, String>("Actions");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("bt"));
 
 
         table.getColumns().add(idColumn);
@@ -128,6 +143,7 @@ public class LoginListUsers extends Header{
         table.getColumns().add(emailColumn);
         table.getColumns().add(phoneColumn);
         table.getColumns().add(emailGeneratedColumn);
+        table.getColumns().add(actionColumn);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }

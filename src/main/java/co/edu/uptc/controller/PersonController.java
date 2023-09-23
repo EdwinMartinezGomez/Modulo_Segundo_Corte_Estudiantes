@@ -154,6 +154,13 @@ public class PersonController {
         return newPerson;
     }
 
+    public ArrayList<Person> getPersons(){
+        ArrayList<Person> accounts = new ArrayList<>();
+        for (Person p : this.personCollection){
+            accounts.add(p);
+        }
+        return accounts;
+    }
     public ArrayList<Account> getAccounts(){
         ArrayList<Account> accounts = new ArrayList<>();
         for (Person p : this.personCollection){

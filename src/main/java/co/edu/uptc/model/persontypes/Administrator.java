@@ -8,6 +8,6 @@ public class Administrator extends Person {
         super(id, name, lastname, email, phone);
     }
     public Administrator(String id, String name, String lastname, Account account, String email, String phone) {
-        super(id, name, lastname, email, phone,account);
+        super(id, name, lastname, phone,email, account);
     }
 }

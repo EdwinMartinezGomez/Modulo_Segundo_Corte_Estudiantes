@@ -3,6 +3,8 @@
     "id": "46389778",
     "name": "Johana",
     "lastname": "Torres Perez",
+    "phone" : "3205959588",
+    "email" : "johana13@gmail.com",
     "account": {
       "id": "46389778",
       "userName": "johana.torres",
@@ -15,6 +17,8 @@
     "id": "1006784563",
     "name": "Jairo",
     "lastname": "Riaño",
+    "phone" : "32047899554",
+    "email" : "Jairo123@gmail.com",
     "account": {
       "id": "1006784563",
       "userName": "jairo.riaño",
@@ -27,6 +31,8 @@
     "id": "10953483",
     "name": "Ivan",
     "lastname": "Mendoza",
+    "phone" : "3105965445",
+    "email" : "Mendoz13@yahoo.es",
     "account": {
       "id": "10953483",
       "userName": "ivan.mendoza",
@@ -39,6 +45,8 @@
     "id": "47865421",
     "name": "Laura",
     "lastname": "Castillo",
+    "phone" : "3021478888",
+    "email" : "Lau2303cas@outlook.co",
     "account": {
       "id": "47865421",
       "userName": "laura.castillo",
@@ -51,6 +59,8 @@
     "id": "32589",
     "name": "Jose",
     "lastname": "Salamanca",
+    "phone" : "3206957947",
+    "email" : "Salamca08jose@gmail.com",
     "account": {
       "id": "32589",
       "userName": "jose.salamanca",
@@ -63,6 +73,8 @@
     "id": "202210568",
     "name": "manuel",
     "lastname": "Martinez",
+    "phone" : "3255954788",
+    "email" : "manumartinez@outlook.co",
     "account": {
       "id": "202210568",
       "userName": "manuel.martinez",
@@ -75,6 +87,8 @@
     "id": "2020154",
     "name": "Juan",
     "lastname": "Velandia Fonseca",
+    "phone" : "32519945548",
+    "email" : "fons4ecavel@gmail.com",
     "account": {
       "id": "2020154",
       "userName": "juan.velandia",
@@ -87,6 +101,8 @@
     "id": "4387582",
     "name": "Maria",
     "lastname": "Torres",
+    "phone" : "3204549488",
+    "email" : "mariaTorres034@gmail.com",
     "account": {
       "id": "4387582",
       "userName": "maria.torres",
@@ -99,6 +115,8 @@
     "id": "12345",
     "name": "Nino ",
     "lastname": "Nakano",
+    "phone" : "31059747558",
+    "email" : "nikonakano045@gmail.com",
     "account": {
       "id": "12345",
       "userName": "nino.nakano",
@@ -111,6 +129,8 @@
     "id": "696969",
     "name": "Fredy",
     "lastname": "Alarcon",
+    "phone" : "320785947",
+    "email" : "fredyalarcon@yahoo.es",
     "account": {
       "id": "696969",
       "userName": "fredy.alarcon01",
@@ -123,6 +143,8 @@
     "id": "2022159",
     "name": "Maria",
     "lastname": "Rodriguez Vega",
+    "phone" : "302774487",
+    "email" : "Mariavega04235@yahoo.es",
     "account": {
       "id": "2022159",
       "userName": "maria.rodriguez01",
@@ -135,6 +157,8 @@
     "id": "123455",
     "name": "Fredy",
     "lastname": "Alarcon",
+    "phone" : "305944575",
+    "email" : "fredyalarcon@yahoo.es",
     "account": {
       "id": "123455",
       "userName": "fredy.alarcon",
@@ -147,6 +171,8 @@
     "id": "1035",
     "name": "Maria",
     "lastname": "Perez",
+    "phone" : "3055459789",
+    "email" : "Mariape9435@yahoo.es",
     "account": {
       "id": "1035",
       "userName": "maria.perez",
@@ -159,6 +185,8 @@
     "id": "6378264",
     "name": "Alvaro",
     "lastname": "Perez",
+    "phone" : "3109597489",
+    "email" : "Alvarogood@yahoo.es",
     "account": {
       "id": "6378264",
       "userName": "alvaro.perez",
