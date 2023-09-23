@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class LoginListUsers extends Header  {
     TableColumn emailColumn;
     TableColumn phoneColumn;
     TableColumn emailGeneratedColumn;
+    Button Home;
     ClaseAux claseAux;
+    ModifyPersonItems modifyPersons;
     ObservableList<Person> PersonList = FXCollections.observableArrayList();
     //ObservableList<Account> accountList=FXCollections.observableArrayList();
     ObservableList<ClaseAux> aux=FXCollections.observableArrayList();
@@ -45,6 +48,8 @@ public class LoginListUsers extends Header  {
     public LoginListUsers(LoginView loginView, Button home) {
         super(home);
         this.parent = loginView;
+        this.home = home;
+        this.modifyPersons = new ModifyPersonItems(this, home);
         borderPane = new BorderPane();
         table = new TableView<Person>();
         //addingRegisters();
@@ -150,6 +155,9 @@ public class LoginListUsers extends Header  {
                         setGraphic(item);
                         item.setOnAction(event -> {
                             ClaseAux rowData = getTableView().getItems().get(getIndex());
+
+                            modifyPersons.modifyPersonsItems();
+
                             System.out.println(rowData.getName());
                         });
                     }
@@ -166,6 +174,9 @@ public class LoginListUsers extends Header  {
         table.getColumns().add(actionColumn);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
+
     }
 
 
