@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 
+import co.edu.uptc.model.Account;
 import co.edu.uptc.model.Person;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -48,8 +49,21 @@ public class ModifyPersonItems  extends  Header {
         personalEmailBox.setAlignment(Pos.CENTER);
         personalEmailBox.setMaxWidth(2000);
 
+        Button saveButton = new Button("Save");
+        saveButton.setId("saveButtonPerson");
+        saveButton.setOnAction(event -> {
+            // Este código se ejecutará cuando se haga clic en el botón
+    //clonar cuenta, clonar persona y cambios hasSet y los correos
+            //si solo cambio telefono no debe cambiar correo ni nada
 
-        VBox root = new VBox(nameBox,lastNameBox,phoneBox, personalEmailBox);
+
+
+
+        });
+        System.out.println(p.toString());
+        VBox root = new VBox(10);
+        root.getChildren().addAll(nameBox, lastNameBox, phoneBox, personalEmailBox, saveButton);
+
         VBox header = new VBox(head , root);
         root.setAlignment(Pos.CENTER);
         Scene scene = new Scene(header, 1000, 600);
