@@ -21,8 +21,6 @@ public class LoginView  extends Application implements EventHandler<ActionEvent>
     LoginController controller;
     LoginListUsers loginListUsers;
     ChangePasswordOptionConfig changePassword;
-    ClaseAux caux;
-    ModifyPersonItems modifyPerson;
     Button home;
     /**
      * Constructs a new LoginView instance and initializes its components.
@@ -36,8 +34,6 @@ public class LoginView  extends Application implements EventHandler<ActionEvent>
         this.loginListUsers = new LoginListUsers(this, home);
         this.changePassword = new ChangePasswordOptionConfig(this,home);
         this.loginDashBoard = new LoginDashBoard(this);
-        this.caux = new ClaseAux();
-        this.modifyPerson = new ModifyPersonItems(this.loginListUsers , home);
     }
     /**
      * The entry point for the JavaFX application.
@@ -127,12 +123,6 @@ public class LoginView  extends Application implements EventHandler<ActionEvent>
         if(e.getSource() == this.loginDashBoard.btnOption4){
             this.stage.setTitle("Login UPTC");
             this.stage.setScene(loginPanel.login());
-        }
-
-        if (e.getSource() == caux.getBt()){
-            this.stage.setTitle("Modificar informacion");
-            this.stage.setScene(modifyPerson.modifyPersonsItems());
-
         }
 
 

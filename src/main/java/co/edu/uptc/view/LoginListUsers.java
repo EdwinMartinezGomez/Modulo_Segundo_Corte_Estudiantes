@@ -49,7 +49,7 @@ public class LoginListUsers extends Header  {
         super(home);
         this.parent = loginView;
         this.home = home;
-        this.modifyPersons = new ModifyPersonItems(this, home);
+        modifyPersons=new ModifyPersonItems(this,home);
         borderPane = new BorderPane();
         table = new TableView<Person>();
         //addingRegisters();
@@ -155,10 +155,9 @@ public class LoginListUsers extends Header  {
                         setGraphic(item);
                         item.setOnAction(event -> {
                             ClaseAux rowData = getTableView().getItems().get(getIndex());
-
-                            modifyPersons.modifyPersonsItems();
-
-                            System.out.println(rowData.getName());
+                            Person p=parent.controller.getPersonController().findPersonById(rowData.getId());
+                            parent.stage.setTitle("Modificar Informacion");
+                            parent.stage.setScene(modifyPersons.modifyPersonsItems(p));
                         });
                     }
                 }
