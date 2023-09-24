@@ -49,7 +49,7 @@ public class LoginListUsers extends Header  {
         super(home);
         this.parent = loginView;
         this.home = home;
-        modifyPersons=new ModifyPersonItems(this,home);
+        modifyPersons=new ModifyPersonItems(this.parent,home);
         borderPane = new BorderPane();
         table = new TableView<Person>();
         //addingRegisters();

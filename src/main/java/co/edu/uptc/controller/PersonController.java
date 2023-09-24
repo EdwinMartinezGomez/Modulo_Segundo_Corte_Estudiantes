@@ -27,6 +27,9 @@ public class PersonController {
         this.jsonStorageUtilities = jsonStorageUtilities;
     }
 
+    public PersonController() {
+    }
+
     public void loadPeople(){
         this.jsonStorageUtilities.readPersons("people");
         List<Person> people = this.jsonStorageUtilities.getExistingContentsPersons();
