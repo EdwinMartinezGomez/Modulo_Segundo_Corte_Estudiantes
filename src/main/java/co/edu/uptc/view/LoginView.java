@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import co.edu.uptc.controller.LoginController;
+import co.edu.uptc.model.ClaseAux;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -123,6 +124,7 @@ public class LoginView  extends Application implements EventHandler<ActionEvent>
             this.stage.setTitle("Login UPTC");
             this.stage.setScene(loginPanel.login());
         }
+
 
         if(e.getSource() == this.home){
             this.stage.setScene(loginDashBoard.dashBoard());

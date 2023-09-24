@@ -24,6 +24,11 @@ public class ClaseAux  {
         this.emailGenerado = emailGenerado;
         this.bt=bt;
     }
+
+    public ClaseAux() {
+
+    }
+
     public Button getBt() {
         return bt;
     }
