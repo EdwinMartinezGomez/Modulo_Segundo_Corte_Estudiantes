@@ -62,6 +62,18 @@ public class PersonController {
         }
         return false;
     }
+    public boolean addPerson(String id, String name, String lastName,String phone,String email, String role,Boolean estado,String nomEmpresa,String cargo){
+        Person newPerson = this.createPersonGraduated(id, name, lastName,phone,email, role,estado,nomEmpresa,cargo);
+        for (Person per : this.personCollection){
+            if (per.getId().equals(newPerson.getId())) return false;
+        }
+        if (newPerson == null) return false;
+        if(this.personCollection.add(newPerson)){
+            updateInformationFile();
+            return true;
+        }
+        return false;
+    }
 
     /**
      * This method allows to assing an account to a person by id.
@@ -156,7 +168,12 @@ public class PersonController {
 
         return newPerson;
     }
+    public Person createPersonGraduated(String id, String name, String lastName,String phone , String email,String role,Boolean estado,String nomEmpresa,String cargo){
+        Person newPerson = null;
+        newPerson=new Graduated(id,name,lastName,phone,email,estado,nomEmpresa,cargo);
 
+        return newPerson;
+    }
     public ArrayList<Person> getPersons(){
         ArrayList<Person> accounts = new ArrayList<>();
         for (Person p : this.personCollection){

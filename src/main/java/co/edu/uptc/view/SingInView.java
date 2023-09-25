@@ -329,6 +329,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
             } else {
                 nomEmpresaField.setVisible(false);
                 cargoFiel.setVisible(false);
+                this.estadoEmp.setValue(ESTADOS[1]);
             }
         });
         VBox labelContainer = new VBox(estadoLabel);
@@ -494,8 +495,17 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
     public void handle(ActionEvent e) {
         if (e.getSource() == this.summit) {
             this.roles.requestFocus();
-            if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText()) && this.validatePhone(this.phone.getText()) && this.validateEmail(this.email.getText())) {
+            if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText()) && this.validatePhone(this.phone.getText()) && this.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[1])) {
                 boolean response = this.parent.controller.signin(this.name.getText(), this.lastName.getText(), this.id.getText(), this.phone.getText(), this.email.getText(), this.roles.getValue());
+                if (response) {
+                    this.parent.loginListUsers.addPerson(this.parent.controller.getPersonController().findPersonById(this.id.getText()));
+                    this.message.setText("Añadido con éxito!");
+                } else {
+                    this.message.setText("Ha ocurrido un error!");
+                }
+                this.messageContainer.setVisible(true);
+            } else if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText()) && this.validatePhone(this.phone.getText()) && this.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[0]) && this.validateNames(this.nomEmpresa.getText())&& this.validateNames(this.cargo.getText())) {
+                boolean response = this.parent.controller.signin(this.name.getText(), this.lastName.getText(), this.id.getText(), this.phone.getText(), this.email.getText(), this.roles.getValue(),true,this.nomEmpresa.getText(),this.cargo.getText());
                 if (response) {
                     this.parent.loginListUsers.addPerson(this.parent.controller.getPersonController().findPersonById(this.id.getText()));
                     this.message.setText("Añadido con éxito!");

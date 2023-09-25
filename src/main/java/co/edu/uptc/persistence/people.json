@@ -56,6 +56,24 @@
     }
   },
   {
+    "estadoEmp": true,
+    "nombEmpresa": "posible",
+    "cargo": "programer",
+    "egresado": true,
+    "id": "105009479",
+    "name": "edwin",
+    "lastname": "martinez",
+    "phone": "3225915375",
+    "email": "edwin991529@gmail.com",
+    "account": {
+      "id": "105009479",
+      "userName": "edwin.martinez",
+      "password": "28WIEag",
+      "role": "GRADUATED",
+      "email": "edwin.martinez@login.uptc.edu.co"
+    }
+  },
+  {
     "egresado": false,
     "id": "32589",
     "name": "Jose",
@@ -98,6 +116,20 @@
       "password": "94VIQct",
       "role": "STUDENT",
       "email": "asdsasad.sad@login.uptc.edu.co"
+    }
+  },
+  {
+    "id": "15345453",
+    "name": "asdas",
+    "lastname": "asdasd",
+    "phone": "4245343543",
+    "email": "sdas@a.asd",
+    "account": {
+      "id": "15345453",
+      "userName": "asdas.asdasd",
+      "password": "38NCCch",
+      "role": "SECRETARY",
+      "email": "asdas.asdasd@login.uptc.edu.co"
     }
   },
   {
@@ -173,6 +205,22 @@
       "password": "97FFUlk",
       "role": "STUDENT",
       "email": "sadsad.sadsad@login.uptc.edu.co"
+    }
+  },
+  {
+    "estadoEmp": false,
+    "egresado": true,
+    "id": "153454879",
+    "name": "aerer",
+    "lastname": "rerer",
+    "phone": "45465",
+    "email": "wadsa@sda.com",
+    "account": {
+      "id": "153454879",
+      "userName": "aerer.rerer",
+      "password": "76XDLyh",
+      "role": "GRADUATED",
+      "email": "aerer.rerer@login.uptc.edu.co"
     }
   },
   {

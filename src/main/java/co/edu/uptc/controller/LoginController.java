@@ -119,6 +119,18 @@ public class LoginController {
        }
         return false;
     }
+    public boolean signin(String name, String lastName, String id,String phone,String email, String role,Boolean estado,String nomEmpresa,String cargo ){
+        if(personController.addPerson(id, name, lastName,phone,email, role,estado,nomEmpresa,cargo)){
+            Person person = personController.findPersonById(id);
+            if (acc.addAccount(person.getId(), person.getName(), person.getLastname(), role)) {
+                Account account = acc.findAccount(acc.getUsername(), acc.getPassword());
+                personController.assingAccount(person.getId(), account);
+                this.personController.updateInformationFile();
+                return true;
+            }
+        }
+        return false;
+    }
       /**
        * getUserName returns the generated user
        * @return String with generated user

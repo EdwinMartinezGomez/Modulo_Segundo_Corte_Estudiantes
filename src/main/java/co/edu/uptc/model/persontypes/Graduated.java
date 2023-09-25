@@ -22,16 +22,15 @@ public class Graduated  extends Student {
         this.cargo = cargo;
     }
 
-    public Graduated(String id,String name, String lastName, String phone, String email, Account account,
-                     boolean egresado, boolean estadoEmp, String nombEmpresa, String cargo) {
-        super(id,name, lastName, phone, email,egresado);
+    public Graduated(String id,String name, String lastName, String phone, String email, boolean estadoEmp, String nombEmpresa, String cargo) {
+        super(id,name, lastName, phone, email,true);
         this.estadoEmp = estadoEmp;
         this.nombEmpresa = nombEmpresa;
         this.cargo = cargo;
     }
 
     public Graduated(String id, String name, String lastName, String phone, String email, Account account) {
-        super(id,name, lastName, phone, email,account);
+        super(id,name, lastName, phone, email,account,true);
     }
 
     public Graduated(String id, String name, String lastName, String phone, String email) {

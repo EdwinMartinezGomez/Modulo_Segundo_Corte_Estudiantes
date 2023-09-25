@@ -49,6 +49,20 @@
     "email": "maria.rodriguez01@uptc.edu.co"
   },
   {
+    "id": "153454879",
+    "userName": "aerer.rerer",
+    "password": "76XDLyh",
+    "role": "GRADUATED",
+    "email": "aerer.rerer@login.uptc.edu.co"
+  },
+  {
+    "id": "15345453",
+    "userName": "asdas.asdasd",
+    "password": "38NCCch",
+    "role": "SECRETARY",
+    "email": "asdas.asdasd@login.uptc.edu.co"
+  },
+  {
     "id": "232",
     "userName": "hjas.sadjsad",
     "password": "14KICso",
@@ -77,18 +91,32 @@
     "email": "fredy.alarcon@uptc.edu.co"
   },
   {
-    "id": "202210815",
-    "userName": "as.as",
-    "password": "86EVWau",
-    "role": "STUDENT",
-    "email": "as.as@login.uptc.edu.co"
-  },
-  {
     "id": "sad",
     "userName": "sad.sad",
     "password": "84DSGto",
     "role": "STUDENT",
     "email": "sad.sad@login.uptc.edu.co"
+  },
+  {
+    "id": "105009479",
+    "userName": "edwin.martinez",
+    "password": "28WIEag",
+    "role": "GRADUATED",
+    "email": "edwin.martinez@login.uptc.edu.co"
+  },
+  {
+    "id": "asd12",
+    "userName": "asd.asd",
+    "password": "49UMHfi",
+    "role": "STUDENT",
+    "email": "asd.asd@login.uptc.edu.co"
+  },
+  {
+    "id": "2321313",
+    "userName": "sadsad.sadsad",
+    "password": "97FFUlk",
+    "role": "STUDENT",
+    "email": "sadsad.sadsad@login.uptc.edu.co"
   },
   {
     "id": "32589",
@@ -124,5 +152,12 @@
     "password": "HJ23jkil",
     "role": "PROFESSOR",
     "email": "ivan.mendoza@uptc.edu.co"
+  },
+  {
+    "id": "123",
+    "userName": "asdsasad.sad",
+    "password": "94VIQct",
+    "role": "STUDENT",
+    "email": "asdsasad.sad@login.uptc.edu.co"
   }
 ]
