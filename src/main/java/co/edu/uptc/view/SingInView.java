@@ -14,8 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
 import java.io.File;
+
 /**
  * The SingInView class represents the view for user registration.
  * It extends the Header class and implements the EventHandler interface for handling events.
@@ -46,16 +46,16 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
 
     private Button summit;
 
-    private static final String[] ROLES ={"Student", "Professor", "Secretary", "Administrator"};
+    private static final String[] ROLES = {"Student", "Professor", "Secretary", "Administrator"};
     private Label idLabel;
 
     /**
      * Constructs a SingInView instance.
      *
      * @param parent The parent LoginView instance.
-     * @param btn    The Button instance to be set as home button in the header.
+     * @param btn    The Button instance to be set as the home button in the header.
      */
-    public SingInView(LoginView parent, Button btn){
+    public SingInView(LoginView parent, Button btn) {
         super(btn);
         this.parent = parent;
         this.util = new InputLibrary();
@@ -66,7 +66,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      *
      * @return The Scene for user registration.
      */
-    public Scene singIn(){
+    public Scene singIn() {
         HBox header = this.getHeader();
         this.setName(this.parent.controller.getName());
         this.setOption("Crear Usuario");
@@ -74,18 +74,17 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.settingNameField();
         this.settingLastNameField();
         this.settingIdField();
-        this.settingRoleField();
         this.settingPhoneField();
         this.settingEmailField();
         this.settingSummitButton();
         this.settingMessage();
 
-        VBox formContainer = new VBox(this.roleField,this.nameField, this.lastNameField, this.idField,this.phoneField,this.emailField, this.summit);
+        VBox formContainer = new VBox(this.roleField, this.nameField, this.lastNameField, this.idField, this.phoneField, this.emailField, this.summit);
         formContainer.setId("form");
         formContainer.setSpacing(10);
         formContainer.setAlignment(Pos.CENTER);
-        VBox.setMargin(formContainer, new Insets( 10));
-        VBox container = new VBox(formContainer,this.messageContainer);
+        VBox.setMargin(formContainer, new Insets(10));
+        VBox container = new VBox(formContainer, this.messageContainer);
         container.setId("main");
         container.setAlignment(Pos.CENTER);
         VBox root = new VBox(header, container);
@@ -100,7 +99,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * Configures a label for the field, a text input for the first name,
      * and an error label to display validation messages.
      */
-    private void settingNameField(){
+    private void settingNameField() {
         this.nameField = new HBox();
         this.nameField.setAlignment(Pos.CENTER);
 
@@ -110,15 +109,10 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.name = new TextField();
         this.name.setPromptText("Jhon");
         this.name.getStyleClass().add("input");
-        this.name.textProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.name, this.nameError, newValue);
-        }));
-
 
         this.nameError = new Label("");
         this.nameError.getStyleClass().add("errorLabel");
         this.nameError.setVisible(false);
-        this.nameError.setAlignment(Pos.BASELINE_RIGHT);
 
         VBox labelContainer = new VBox(nameLabel);
         VBox inputContainer = new VBox(this.name, this.nameError);
@@ -126,6 +120,20 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
 
         this.nameField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
+
+        // Listener para validación en tiempo real del campo nombre
+        this.name.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isBlank()) {
+                this.nameError.setText("Obligatorio*");
+                this.nameError.setVisible(true);
+            } else if (this.util.containsNums(newValue) || this.util.containSpecialCharactersNums(newValue) || newValue.startsWith(" ")) {
+                this.nameError.setText("Los nombres no deben contener espacios al iniciar números o caracteres especiales.");
+                this.nameError.setVisible(true);
+            } else {
+                this.nameError.setText(""); // Limpia el mensaje de error
+                this.nameError.setVisible(false);
+            }
+        });
     }
 
     /**
@@ -133,7 +141,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * Configures a label for the field, a text input for the last name,
      * and an error label to display validation messages.
      */
-    private void settingLastNameField(){
+    private void settingLastNameField() {
         this.lastNameField = new HBox();
         this.lastNameField.setAlignment(Pos.CENTER);
 
@@ -143,9 +151,6 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.lastName = new TextField();
         this.lastName.setPromptText("Doe");
         this.lastName.getStyleClass().add("input");
-        this.lastName.textProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.lastName, this.lastNameError, newValue);
-        }));;
 
         this.lastNameError = new Label("");
         this.lastNameError.getStyleClass().add("errorLabel");
@@ -157,6 +162,20 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
 
         this.lastNameField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
+
+        // Listener para validación en tiempo real del campo apellidos
+        this.lastName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isBlank()) {
+                this.lastNameError.setText("Obligatorio*");
+                this.lastNameError.setVisible(true);
+            } else if (this.util.containsNums(newValue) || this.util.containSpecialCharactersNums(newValue) || newValue.startsWith(" ")) {
+                this.lastNameError.setText("Los apellidos no deben contener espacios al iniciar números o caracteres especiales.");
+                this.lastNameError.setVisible(true);
+            } else {
+                this.lastNameError.setText(""); // Limpia el mensaje de error
+                this.lastNameError.setVisible(false);
+            }
+        });
     }
 
     /**
@@ -164,7 +183,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * Configures a label for the field, a text input for the identification,
      * and an error label to display validation messages.
      */
-    private void settingIdField(){
+    private void settingIdField() {
         this.idField = new HBox();
         this.idField.setAlignment(Pos.CENTER);
 
@@ -175,63 +194,120 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.id = new TextField();
         this.id.getStyleClass().add("input");
         this.id.setPromptText("Ej: 202210583");
-        this.id.textProperty().addListener(((observable, oldValue, newValue) -> {
-            validateIdStyle(this.id, this.idError, newValue);
-        }));;
 
         this.idError = new Label();
         this.idError.getStyleClass().add("errorLabel");
         this.idError.setVisible(false);
+
         VBox labelContainer = new VBox(idLabel);
         VBox inputContainer = new VBox(this.id, this.idError);
 
         inputContainer.setAlignment(Pos.CENTER);
+
         this.idField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
+
+        // Listener para validación en tiempo real del campo de identificación
+        this.id.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateIdStyle(this.id, this.idError, newValue);
+        });
     }
 
     /**
-     * Sets up the UI elements for selecting a role.
-     * Configures a label for the role selection, a choice box to select a role,
-     * and sets up event handling for role selection changes.
+     * Sets up the UI elements for entering the user's phone number.
+     * Configures a label for the field, a text input for the phone number,
+     * and an error label to display validation messages.
      */
-    private void settingRoleField( ){
-        this.roleField = new HBox();
-        this.roleField.setAlignment(Pos.CENTER);
-        Label roleLabel = new Label("Rol");
-        roleLabel.getStyleClass().add("tag");
+    public void settingPhoneField() {
+        this.phoneField = new HBox();
+        this.phoneField.setAlignment(Pos.CENTER);
 
-        this.roles = new ChoiceBox<>();
-        this.roles.getStyleClass().add("input");
-        this.roles.getItems().addAll(ROLES);
-        this.roles.setValue(ROLES[0]);
-        this.roles.setOnAction(this);
-        VBox labelContainer = new VBox(roleLabel);
-        VBox inputContainer = new VBox(this.roles);
-        VBox.setMargin(this.roles, new Insets(0,0,10,0));
+        Label phoneLabel = new Label("Phone");
+        phoneLabel.getStyleClass().add("tag");
+
+        this.phone = new TextField();
+        this.phone.getStyleClass().add("input");
+
+        this.phoneError = new Label();
+        this.phoneError.getStyleClass().add("errorLabel");
+        this.phoneError.setVisible(false);
+
+        VBox labelContainer = new VBox(phoneLabel);
+        VBox inputContainer = new VBox(this.phone, this.phoneError);
+
         inputContainer.setAlignment(Pos.CENTER);
 
-        this.roleField.getChildren().addAll(labelContainer, inputContainer);
+        this.phoneField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
+
+        // Listener para validación en tiempo real del campo de teléfono
+        this.phone.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!validatePhone(newValue)) {
+                this.phoneError.setText("El teléfono no debe contener letras.");
+                this.phoneError.setVisible(true);
+            } else {
+                this.phoneError.setText(""); // Limpia el mensaje de error
+                this.phoneError.setVisible(false);
+            }
+        });
+    }
+
+    /**
+     * Sets up the UI elements for entering the user's email address.
+     * Configures a label for the field, a text input for the email address,
+     * and an error label to display validation messages.
+     */
+    public void settingEmailField() {
+        this.emailField = new HBox();
+        this.emailField.setAlignment(Pos.CENTER);
+
+        Label emailLabel = new Label("Email");
+        emailLabel.getStyleClass().add("tag");
+
+        this.email = new TextField();
+        this.email.getStyleClass().add("input");
+
+        this.emailError = new Label();
+        this.emailError.getStyleClass().add("errorLabel");
+        this.emailError.setVisible(false);
+
+        VBox labelContainer = new VBox(emailLabel);
+        VBox inputContainer = new VBox(this.email, this.emailError);
+
+        inputContainer.setAlignment(Pos.CENTER);
+
+        this.emailField.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+
+        // Listener para validación en tiempo real del campo de correo electrónico
+        this.email.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!validateEmail(newValue)) {
+                this.emailError.setText("El correo electrónico debe contener '@'.");
+                this.emailError.setVisible(true);
+            } else {
+                this.emailError.setText(""); // Limpia el mensaje de error
+                this.emailError.setVisible(false);
+            }
+        });
     }
 
     /**
      * Configures the "Registrar" button for user registration.
      * Sets the button label, CSS ID, cursor style, and event handling for button clicks.
      */
-    private void settingSummitButton(){
+    private void settingSummitButton() {
         this.summit = new Button("Registrar");
         this.summit.setId("summit");
         this.summit.setCursor(Cursor.HAND);
         this.summit.setOnAction(this);
-        VBox.setMargin(this.summit, new Insets(20, 0, 0 ,0));
+        VBox.setMargin(this.summit, new Insets(20, 0, 0, 0));
     }
 
     /**
      * Configures the message display container and label for displaying status messages.
      * Sets the initial message, container ID for styling, alignment, and visibility.
      */
-    private void settingMessage(){
+    private void settingMessage() {
         this.messageContainer = new VBox();
         this.messageContainer.setId("messageContainer");
         this.message = new Label("Error!");
@@ -240,49 +316,11 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.messageContainer.getChildren().add(this.message);
         this.messageContainer.setVisible(false);
     }
-    public void settingPhoneField(){
-        this.phoneField =new HBox();
-        this.phoneField.setAlignment(Pos.CENTER);
-        Label phoneLabel=new Label("Phone");
-        phoneLabel.getStyleClass().add("tag");
-        this.phone=new TextField();
-        this.phone.getStyleClass().add("input");
-        this.phone.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateIdStyle(this.phone, this.phoneError, newValue);
-        }));
-        this.phoneError=new Label();
-        this.phoneError.getStyleClass().add("errorLabel");
-        this.phoneError.setVisible(false);
-        VBox labelContainer = new VBox(phoneLabel);
-        VBox inputContainer = new VBox(this.phone, this.phoneError);
-        inputContainer.setAlignment(Pos.CENTER);
-        this.phoneField.getChildren().addAll(labelContainer, inputContainer);
-        HBox.setHgrow(inputContainer, Priority.ALWAYS);
-    }
-    public void settingEmailField(){
-        this.emailField =new HBox();
-        this.emailField.setAlignment(Pos.CENTER);
-        Label phoneLabel=new Label("Email");
-        phoneLabel.getStyleClass().add("tag");
-        this.email=new TextField();
-        this.email.getStyleClass().add("input");
-        this.email.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateContainsArr(this.email, this.emailError, newValue);
-        }));
-        this.emailError=new Label();
-        this.emailError.getStyleClass().add("errorLabel");
-        this.emailError.setVisible(false);
-        VBox labelContainer = new VBox(phoneLabel);
-        VBox inputContainer = new VBox(this.email, this.emailError);
-        inputContainer.setAlignment(Pos.CENTER);
-        this.emailField.getChildren().addAll(labelContainer, inputContainer);
-        HBox.setHgrow(inputContainer, Priority.ALWAYS);
-    }
 
     private void validateContainsArr(TextField ob, Label error, String value) {
-        if(!this.util.containsArr(value)){
-            if (!error.getText().contains("Debe contener @")){
-                error.setText(error.getText() + "Debe contener @");
+        if (!this.util.containsArr(value)) {
+            error.setText(error.getText() + "Debe contener @");
+            if (!error.getText().contains("Debe contener @")) {
                 ob.getStyleClass().add("errorInput");
                 error.setVisible(true);
             }
@@ -296,29 +334,28 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * @param error The Label to display error messages
      * @param value The input value to be validated
      */
-    private void validateIdStyle(TextField ob, Label error, String value){
-        if (value.isBlank() ||  this.util.containSpecialCharactersId(value)){
+    private void validateIdStyle(TextField ob, Label error, String value) {
+        if (value.isBlank() || this.util.containSpecialCharactersId(value)) {
             ob.getStyleClass().add("errorInput");
             error.setVisible(true);
         }
 
-        if (value.isBlank()){
-            if (!error.getText().contains(" Obligatorio*")){
+        if (value.isBlank()) {
+            if (!error.getText().contains(" Obligatorio*")) {
                 error.setText(error.getText() + " Obligatorio*");
             }
         }
 
-        if ( this.util.containSpecialCharactersId(value)){
-            if (!error.getText().contains(" Sin caracteres especiales")){
+        if (this.util.containSpecialCharactersId(value)) {
+            if (!error.getText().contains(" Sin caracteres especiales")) {
                 error.setText(error.getText() + " Sin caracteres especiales");
             }
         }
 
-        if (!this.util.containSpecialCharactersId(ob.getText()) && !ob.getText().isBlank()){
+        if (!this.util.containSpecialCharactersId(ob.getText()) && !ob.getText().isBlank()) {
             error.setText("");
             ob.getStyleClass().remove("errorInput");
         }
-
     }
 
     /**
@@ -328,37 +365,37 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * @param error The Label to display error messages
      * @param value The input value to be validated
      */
-    private void validateNumbers(TextField ob, Label error, String value){
-        if (this.util.containsNums(ob.getText()) || this.util.containSpecialCharactersNums(value) || value.isBlank() || value.startsWith(" ")){
-            if (!ob.getStyleClass().contains("errorInput")){
+    private void validateNumbers(TextField ob, Label error, String value) {
+        if (this.util.containsNums(ob.getText()) || this.util.containSpecialCharactersNums(value) || value.isBlank() || value.startsWith(" ")) {
+            if (!ob.getStyleClass().contains("errorInput")) {
                 ob.getStyleClass().add("errorInput");
             }
             error.setVisible(true);
 
-            if (value.isBlank()){
-                if (!error.getText().contains(" Obligatorio*")){
+            if (value.isBlank()) {
+                if (!error.getText().contains(" Obligatorio*")) {
                     error.setText(error.getText() + " Obligatorio*");
                 }
             }
-            if (value.startsWith(" ")){
-                if (!error.getText().contains("No espacios iniciales.")){
+            if (value.startsWith(" ")) {
+                if (!error.getText().contains("No espacios iniciales.")) {
                     error.setText(error.getText() + "No espacios iniciales.");
                 }
             }
-            if (this.util.containsNums(value)){
-                if (!error.getText().contains(" Sin Números")){
+            if (this.util.containsNums(value)) {
+                if (!error.getText().contains(" Sin Números")) {
                     error.setText(error.getText() + " Sin Números");
                 }
             }
 
-            if ( this.util.containSpecialCharactersNums(value)){
-                if (!error.getText().contains(" Sin caracteres especiales")){
+            if (this.util.containSpecialCharactersNums(value)) {
+                if (!error.getText().contains(" Sin caracteres especiales")) {
                     error.setText(error.getText() + " Sin caracteres especiales");
                 }
             }
         }
 
-        if (!this.util.containsNums(ob.getText()) && !this.util.containSpecialCharactersNums(ob.getText()) && !ob.getText().isBlank() && !value.startsWith(" ")){
+        if (!this.util.containsNums(ob.getText()) && !this.util.containSpecialCharactersNums(ob.getText()) && !ob.getText().isBlank() && !value.startsWith(" ")) {
             error.setText("");
             ob.getStyleClass().remove("errorInput");
         }
@@ -370,8 +407,8 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * @param str The string to be validated
      * @return True if the string is valid (meets the specified criteria), false otherwise
      */
-    public boolean validateNames(String str){
-        return  !str.isBlank() && !this.util.containsNums(str)  && !this.util.containSpecialCharactersNums(str) && !str.startsWith(" ");
+    public boolean validateNames(String str) {
+        return !str.isBlank() && !this.util.containsNums(str) && !this.util.containSpecialCharactersNums(str) && !str.startsWith(" ");
     }
 
     /**
@@ -380,8 +417,29 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * @param str The identification string to be validated
      * @return True if the string is valid (meets the specified criteria), false otherwise
      */
-    public boolean validateId(String str){
-        return  !str.isBlank() && !this.util.containSpecialCharactersId(str) && !str.contains(" ");
+    public boolean validateId(String str) {
+        return !str.isBlank() && !this.util.containSpecialCharactersId(str) && !str.contains(" ");
+    }
+
+    /**
+     * Validates the input style and displays appropriate error messages for the phone field.
+     *
+     * @param phone The phone number to be validated
+     * @return True if the phone number is valid (meets the specified criteria), false otherwise
+     */
+    private boolean validatePhone(String phone) {
+        // Use a regular expression to check if the phone number contains only digits
+        return phone.matches("\\d+") && !phone.isBlank();
+    }
+
+    /**
+     * Validates the input style and displays appropriate error messages for the email field.
+     *
+     * @param email The email address to be validated
+     * @return True if the email address is valid (contains "@"), false otherwise
+     */
+    private boolean validateEmail(String email) {
+        return email.contains("@");
     }
 
     /**
@@ -391,41 +449,35 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent e) {
-        if (e.getSource() == this.summit){
+        if (e.getSource() == this.summit) {
             this.roles.requestFocus();
-            if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText())){
-                boolean respone = this.parent.controller.signin(this.name.getText(),this.lastName.getText(), this.id.getText(),this.phone.getText(),this.email.getText(), this.roles.getValue());
-                if (respone){
+            boolean hasError = false;
+
+            if (this.nameError.isVisible() || this.lastNameError.isVisible() || this.idError.isVisible() || this.phoneError.isVisible() || this.emailError.isVisible()) {
+                this.message.setText("Por favor, corrija los errores antes de registrar.");
+                hasError = true;
+            } else if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && this.validateId(this.id.getText()) && this.validatePhone(this.phone.getText()) && this.validateEmail(this.email.getText())) {
+                boolean response = this.parent.controller.signin(this.name.getText(), this.lastName.getText(), this.id.getText(), this.phone.getText(), this.email.getText(), this.roles.getValue());
+                if (response) {
                     this.parent.loginListUsers.addPerson(this.parent.controller.getPersonController().findPersonById(this.id.getText()));
                     this.message.setText("Añadido con éxito!");
-                }else{
+                } else {
                     this.message.setText("Ha ocurrido un error!");
                 }
-                this.messageContainer.setVisible(true);
-            }else {
-                this.message.setText("Los nombres no deben contener espacios al iniciar\n números o caracteres especiales.");
-                this.messageContainer.setVisible(true);
+            } else {
+                this.message.setText("Los nombres no deben contener espacios al iniciar números o caracteres especiales.\n" +
+                        "Asegúrese de que el teléfono no contenga letras y que el correo electrónico tenga '@'.");
+                hasError = true;
             }
 
-
-            if (this.name.getText().isBlank()){
-                this.nameError.setText("Obligatorio*");
-                this.nameError.setVisible(true);
-            }
-            if (this.lastName.getText().isBlank()){
-                this.lastNameError.setText("Obligatorio*");
-                this.lastNameError.setVisible(true);
-            }
-            if (this.id.getText().isBlank()){
-                this.idError.setText("Obligatorio*");
-                this.idError.setVisible(true);
-            }
+            this.messageContainer.setVisible(hasError);
         }
-        if (e.getSource() == this.roles){
-            if (!this.roles.getValue().equals(ROLES[0])){
+
+        if (e.getSource() == this.roles) {
+            if (!this.roles.getValue().equals(ROLES[0])) {
                 this.idLabel.setText("Identificación");
                 this.id.setPromptText("1053893289");
-            }else {
+            } else {
                 this.idLabel.setText("código");
                 this.id.setPromptText("202216034");
             }
