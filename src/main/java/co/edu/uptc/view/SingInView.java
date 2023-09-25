@@ -230,10 +230,12 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.roles.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Graduated")) {
                 estadoField.setVisible(true);
+                this.estadoEmp.setValue(ESTADOS[1]);
             } else {
                 estadoField.setVisible(false);
                 nomEmpresaField.setVisible(false);
                 cargoFiel.setVisible(false);
+                this.estadoEmp.setValue(ESTADOS[1]);
             }
         });
         VBox labelContainer = new VBox(roleLabel);
@@ -329,7 +331,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
             } else {
                 nomEmpresaField.setVisible(false);
                 cargoFiel.setVisible(false);
-                this.estadoEmp.setValue(ESTADOS[1]);
+
             }
         });
         VBox labelContainer = new VBox(estadoLabel);
