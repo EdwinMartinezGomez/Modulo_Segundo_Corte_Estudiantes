@@ -14,7 +14,6 @@ public class Person {
     private String lastname;
     private String phone;
     private  String email;
-
     private Account account;
 
 

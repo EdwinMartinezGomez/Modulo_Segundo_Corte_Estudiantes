@@ -35,7 +35,7 @@ public class Graduated  extends Student {
     }
 
     public Graduated(String id, String name, String lastName, String phone, String email) {
-        super(id,name, lastName, phone, email);
+        super(id,name, lastName, phone, email,true);
     }
 
     public boolean isEstadoEmp() {

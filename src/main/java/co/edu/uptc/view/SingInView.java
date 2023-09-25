@@ -7,10 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -29,16 +27,26 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
     private HBox roleField;
     private HBox phoneField;
     private HBox emailField;
+    private HBox nomEmpresaField;
+    private HBox cargoFiel;
+    private HBox estadoField;
     private Label nameError;
     private Label lastNameError;
     private Label idError;
     private Label emailError;
     private Label phoneError;
+
+    private Label nomEmpresaError;
+    private Label cargoError;
     private TextField name;
     private TextField phone;
     private TextField email;
     private TextField lastName;
     private TextField id;
+
+    private TextField nomEmpresa;
+    private TextField cargo;
+    private ChoiceBox<String> estadoEmp;
     private ChoiceBox<String> roles;
 
     private VBox messageContainer;
@@ -46,7 +54,8 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
 
     private Button summit;
 
-    private static final String[] ROLES = {"Student", "Professor", "Secretary", "Administrator"};
+    private static final String[] ROLES = {"Student", "Professor", "Secretary", "Administrator","Graduated"};
+    private static final String[] ESTADOS={"Si","No"};
     private Label idLabel;
 
     /**
@@ -66,7 +75,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      *
      * @return The Scene for user registration.
      */
-    public Scene singIn() {
+    public Scene singIn(){
         HBox header = this.getHeader();
         this.setName(this.parent.controller.getName());
         this.setOption("Crear Usuario");
@@ -78,18 +87,28 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.settingPhoneField();
         this.settingEmailField();
         this.settingSummitButton();
+        this.settingEstadoField();
+        this.settingNombreEmpresaField();
+        this.settingCargoField();
         this.settingMessage();
-
-        VBox formContainer = new VBox(this.roleField, this.nameField, this.lastNameField, this.idField, this.phoneField, this.emailField, this.summit);
+        VBox formContainer = new VBox(this.roleField,this.nameField, this.lastNameField, this.idField,this.phoneField,this.emailField,this.estadoField,this.nomEmpresaField,this.cargoFiel, this.summit);
         formContainer.setId("form");
         formContainer.setSpacing(10);
         formContainer.setAlignment(Pos.CENTER);
-        VBox.setMargin(formContainer, new Insets(10));
-        VBox container = new VBox(formContainer, this.messageContainer);
+        VBox.setMargin(formContainer, new Insets( 10));
+        VBox container = new VBox(formContainer,this.messageContainer);
         container.setId("main");
         container.setAlignment(Pos.CENTER);
-        VBox root = new VBox(header, container);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(container);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Desactiva la barra de desplazamiento horizontal
+        scrollPane.setFitToWidth(true); // Ajusta el contenido al ancho de la ventana
+
+        BorderPane root = new BorderPane();
         root.setId("root");
+        root.setTop(header); // Coloca el encabezado en la parte superior
+        root.setCenter(scrollPane); // Coloca el ScrollPane en el centro
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add(new File("./styles/signin.css").toURI().toString());
         return scene;
@@ -208,6 +227,15 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.roles.getItems().addAll(ROLES);
         this.roles.setValue(ROLES[0]);
         this.roles.setOnAction(this);
+        this.roles.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Graduated")) {
+                estadoField.setVisible(true);
+            } else {
+                estadoField.setVisible(false);
+                nomEmpresaField.setVisible(false);
+                cargoFiel.setVisible(false);
+            }
+        });
         VBox labelContainer = new VBox(roleLabel);
         VBox inputContainer = new VBox(this.roles);
         VBox.setMargin(this.roles, new Insets(0, 0, 10, 0));
@@ -283,6 +311,74 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
     }
 
+    private void settingEstadoField( ){
+        this.estadoField = new HBox();
+        this.estadoField.setAlignment(Pos.CENTER);
+        Label estadoLabel = new Label("Estado");
+        estadoLabel.getStyleClass().add("tag");
+
+        this.estadoEmp = new ChoiceBox<>();
+        this.estadoEmp.getStyleClass().add("input");
+        this.estadoEmp.getItems().addAll(ESTADOS);
+        this.estadoEmp.setValue(ESTADOS[1]);
+        this.estadoEmp.setOnAction(this);
+        this.estadoEmp.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Si")) {
+                nomEmpresaField.setVisible(true);
+                cargoFiel.setVisible(true);
+            } else {
+                nomEmpresaField.setVisible(false);
+                cargoFiel.setVisible(false);
+            }
+        });
+        VBox labelContainer = new VBox(estadoLabel);
+        VBox inputContainer = new VBox(this.estadoEmp);
+        VBox.setMargin(this.estadoEmp, new Insets(0,0,10,0));
+        inputContainer.setAlignment(Pos.CENTER);
+        this.estadoField.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+        estadoField.setVisible(false);
+    }
+    public void settingNombreEmpresaField(){
+        this.nomEmpresaField =new HBox();
+        this.nomEmpresaField.setAlignment(Pos.CENTER);
+        Label nombreEmpresa=new Label("Nombre Empresa");
+        nombreEmpresa.getStyleClass().add("tag");
+        this.nomEmpresa=new TextField();
+        this.nomEmpresa.getStyleClass().add("input");
+        this.nomEmpresa.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
+            validateNumbers(this.nomEmpresa, this.nomEmpresaError, newValue);
+        }));
+        this.nomEmpresaError=new Label();
+        this.nomEmpresaError.getStyleClass().add("errorLabel");
+        this.nomEmpresaError.setVisible(false);
+        VBox labelContainer = new VBox(nombreEmpresa);
+        VBox inputContainer = new VBox(this.nomEmpresa, this.nomEmpresaError);
+        inputContainer.setAlignment(Pos.CENTER);
+        this.nomEmpresaField.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+        nomEmpresaField.setVisible(false);
+    }
+    public void settingCargoField(){
+        this.cargoFiel =new HBox();
+        this.cargoFiel.setAlignment(Pos.CENTER);
+        Label cargoLabel=new Label("Cargo");
+        cargoLabel.getStyleClass().add("tag");
+        this.cargo=new TextField();
+        this.cargo.getStyleClass().add("input");
+        this.cargo.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
+            validateNumbers(this.cargo, this.cargoError, newValue);
+        }));
+        this.cargoError=new Label();
+        this.cargoError.getStyleClass().add("errorLabel");
+        this.cargoError.setVisible(false);
+        VBox labelContainer = new VBox(cargoLabel);
+        VBox inputContainer = new VBox(this.cargo, this.cargoError);
+        inputContainer.setAlignment(Pos.CENTER);
+        this.cargoFiel.getChildren().addAll(labelContainer, inputContainer);
+        HBox.setHgrow(inputContainer, Priority.ALWAYS);
+        cargoFiel.setVisible(false);
+    }
     private void validateContainsArr(TextField ob, Label error, String value) {
         if (!this.util.containsArr(value)) {
             error.setText(error.getText() + "Debe contener @");
