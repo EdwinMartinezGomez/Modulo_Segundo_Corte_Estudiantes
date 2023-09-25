@@ -148,4 +148,8 @@ public class InputLibrary {
         String noNums = str.replaceAll("[0-9]", "");
         return str.length() > noNums.length();
     }
+
+    public boolean containsArr(String str){
+        return str.contains("@");
+    }
 }

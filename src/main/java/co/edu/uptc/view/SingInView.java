@@ -267,7 +267,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.email=new TextField();
         this.email.getStyleClass().add("input");
         this.email.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateIdStyle(this.email, this.emailError, newValue);
+            validateContainsArr(this.email, this.emailError, newValue);
         }));
         this.emailError=new Label();
         this.emailError.getStyleClass().add("errorLabel");
@@ -278,6 +278,17 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.emailField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
     }
+
+    private void validateContainsArr(TextField ob, Label error, String value) {
+        if(!this.util.containsArr(value)){
+            if (!error.getText().contains("Debe contener @")){
+                error.setText(error.getText() + "Debe contener @");
+                ob.getStyleClass().add("errorInput");
+                error.setVisible(true);
+            }
+        }
+    }
+
     /**
      * Validates the input style and displays appropriate error messages for the ID field.
      *
@@ -307,6 +318,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
             error.setText("");
             ob.getStyleClass().remove("errorInput");
         }
+
     }
 
     /**

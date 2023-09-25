@@ -21,13 +21,6 @@
     "email": "laura.castillo@uptc.edu.co"
   },
   {
-    "id": "696969",
-    "userName": "fredy.alarcon01",
-    "password": "13UJCdp",
-    "role": "ADMINISTRATOR",
-    "email": "fredy.alarcon01@uptc.edu.co"
-  },
-  {
     "id": "46389778",
     "userName": "johana.torres",
     "password": "JKJfsdhf334",
@@ -47,13 +40,6 @@
     "password": "HJAkjsf234",
     "role": "STUDENT",
     "email": "maria.rodriguez01@uptc.edu.co"
-  },
-  {
-    "id": "202210815",
-    "userName": "edwin.martinez",
-    "password": "52SYOcd",
-    "role": "STUDENT",
-    "email": "edwin.martinez@login.uptc.edu.co"
   },
   {
     "id": "4387582",
@@ -77,6 +63,27 @@
     "email": "fredy.alarcon@uptc.edu.co"
   },
   {
+    "id": "sad",
+    "userName": "sad.sad",
+    "password": "84DSGto",
+    "role": "STUDENT",
+    "email": "sad.sad@login.uptc.edu.co"
+  },
+  {
+    "id": "asd12",
+    "userName": "asd.asd",
+    "password": "49UMHfi",
+    "role": "STUDENT",
+    "email": "asd.asd@login.uptc.edu.co"
+  },
+  {
+    "id": "2321313",
+    "userName": "sadsad.sadsad",
+    "password": "97FFUlk",
+    "role": "STUDENT",
+    "email": "sadsad.sadsad@login.uptc.edu.co"
+  },
+  {
     "id": "32589",
     "userName": "jose.salamanca",
     "password": "fh543YY",
@@ -98,10 +105,24 @@
     "email": "jairo.riaño@uptc.edu.co"
   },
   {
+    "id": "696969",
+    "userName": "fredy.alarcon01",
+    "password": "12345",
+    "role": "ADMINISTRATOR",
+    "email": "fredy.alarcon01@uptc.edu.co"
+  },
+  {
     "id": "10953483",
     "userName": "ivan.mendoza",
     "password": "HJ23jkil",
     "role": "PROFESSOR",
     "email": "ivan.mendoza@uptc.edu.co"
+  },
+  {
+    "id": "123",
+    "userName": "asdsasad.sad",
+    "password": "94VIQct",
+    "role": "STUDENT",
+    "email": "asdsasad.sad@login.uptc.edu.co"
   }
 ]
