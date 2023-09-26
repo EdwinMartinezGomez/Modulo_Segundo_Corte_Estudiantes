@@ -49,6 +49,13 @@
     "email": "maria.rodriguez01@uptc.edu.co"
   },
   {
+    "id": "1346546",
+    "userName": "borrame.f",
+    "password": "80OVHvn",
+    "role": "GRADUATED",
+    "email": "borrame.f@login.uptc.edu.co"
+  },
+  {
     "id": "153454879",
     "userName": "aerer.rerer",
     "password": "76XDLyh",
@@ -145,5 +152,19 @@
     "password": "HJ23jkil",
     "role": "PROFESSOR",
     "email": "ivan.mendoza@uptc.edu.co"
+  },
+  {
+    "id": "1212",
+    "userName": "asdas.asdasdsad",
+    "password": "84DHKcy",
+    "role": "GRADUATED",
+    "email": "asdas.asdasdsad@login.uptc.edu.co"
+  },
+  {
+    "id": "3121321",
+    "userName": "asdf.f",
+    "password": "98OQHju",
+    "role": "GRADUATED",
+    "email": "asdf.f@login.uptc.edu.co"
   }
 ]

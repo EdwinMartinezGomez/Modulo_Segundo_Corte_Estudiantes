@@ -14,6 +14,22 @@
     }
   },
   {
+    "estadoEmp": false,
+    "egresado": true,
+    "id": "3121321",
+    "name": "asdf",
+    "lastname": "f",
+    "phone": "135465",
+    "email": "a@a",
+    "account": {
+      "id": "3121321",
+      "userName": "asdf.f",
+      "password": "98OQHju",
+      "role": "GRADUATED",
+      "email": "asdf.f@login.uptc.edu.co"
+    }
+  },
+  {
     "id": "1006784563",
     "name": "Jairo",
     "lastname": "Riaño",
@@ -87,9 +103,7 @@
     }
   },
   {
-    "estadoEmp": true,
-    "nombEmpresa": "penes",
-    "cargo": "chupar",
+    "estadoEmp": false,
     "egresado": true,
     "id": "141452",
     "name": "ver",
@@ -296,6 +310,22 @@
       "password": "35SCKqs",
       "role": "STUDENT",
       "email": "maria.perez@uptc.edu.co"
+    }
+  },
+  {
+    "estadoEmp": false,
+    "egresado": true,
+    "id": "1212",
+    "name": "asdas",
+    "lastname": "asdasdsad",
+    "phone": "13543",
+    "email": "a@a",
+    "account": {
+      "id": "1212",
+      "userName": "asdas.asdasdsad",
+      "password": "84DHKcy",
+      "role": "GRADUATED",
+      "email": "asdas.asdasdsad@login.uptc.edu.co"
     }
   },
   {

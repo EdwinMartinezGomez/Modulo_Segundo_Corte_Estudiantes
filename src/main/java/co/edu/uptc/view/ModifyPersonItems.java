@@ -3,6 +3,7 @@ package co.edu.uptc.view;
 
 import co.edu.uptc.model.Account;
 import co.edu.uptc.model.Person;
+import co.edu.uptc.model.persontypes.Graduated;
 import co.edu.uptc.utilities.InputLibrary;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,26 +56,23 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
     private Button summit;
     private Button delete;
     private Person person;
+    private Graduated graduated;
     private static final String[] ROLES = {"Student", "Professor", "Secretary", "Administrator","Graduated"};
     private static final String[] ESTADOS={"Si","No"};
     private Label idLabel;
 
     private  LoginListUsers lglusr;
     public  Scene modifyPersonsItems(Person p){
-        this.person=p;
+        verifyType(p);
         HBox header = this.getHeader();
         this.setName(this.lgView.controller.getName());
         this.setOption("Modificar Usuario");
-
         this.settingNameField(p.getName());
         this.settingLastNameField(p.getLastname());
-        this.settingEstadoField();
         this.settingRoleField(p.getAccount().getRole());
         this.settingPhoneField(p.getPhone());
         this.settingEmailField(p.getEmail());
         this.settingSummitButton();
-        this.settingNombreEmpresaField();
-        this.settingCargoField();
         this.settingMessage();
         VBox formContainer = new VBox(this.roleField,this.nameField, this.lastNameField,this.phoneField,this.emailField,this.estadoField,this.nomEmpresaField,this.cargoFiel, this.Buttons);
         formContainer.setId("form");
@@ -98,14 +96,16 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         scene.getStylesheets().add(new File("./styles/modifyPerson.css").toURI().toString());
         return scene;
     }
-
+    public void verifyType(Person p){
+        System.out.println(p.toString());
+        graduated=(Graduated) p;
+        person=p;
+    }
     public  ModifyPersonItems(LoginView lgView,  Button bt){
         super(bt);
         this.lgView = lgView;
         this.util = new InputLibrary();
         borderPane = new BorderPane();
-
-
     }
     private void settingNameField(String name) {
         this.nameField = new HBox();
@@ -176,7 +176,11 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         int numrol=numRol(rol);
         this.roles.setValue(ROLES[numrol]);
         if(rol.toLowerCase().equals(ROLES[4].toLowerCase())){
+            this.settingEstadoField(graduated.getEstadoEmp());
             estadoField.setVisible(true);
+        }else {
+            this.settingEstadoField(graduated.getEstadoEmp());
+            estadoField.setVisible(false);
         }
         this.roles.setOnAction(this);
         this.roles.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -277,16 +281,27 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
     }
 
-    private void settingEstadoField(){
+    private void settingEstadoField(boolean estado){
         this.estadoField = new HBox();
         this.estadoField.setAlignment(Pos.CENTER);
         Label estadoLabel = new Label("Estado");
         estadoLabel.getStyleClass().add("tag");
-
         this.estadoEmp = new ChoiceBox<>();
         this.estadoEmp.getStyleClass().add("input");
         this.estadoEmp.getItems().addAll(ESTADOS);
-        this.estadoEmp.setValue(ESTADOS[1]);
+        if (estado){
+            this.estadoEmp.setValue(ESTADOS[0]);
+            this.settingNombreEmpresaField(graduated.getNombEmpresa());
+            this.settingCargoField(graduated.getCargo());
+            nomEmpresaField.setVisible(true);
+            cargoFiel.setVisible(true);
+        }else {
+            this.estadoEmp.setValue(ESTADOS[1]);
+            this.settingNombreEmpresaField(graduated.getNombEmpresa());
+            this.settingCargoField(graduated.getCargo());
+            nomEmpresaField.setVisible(false);
+            cargoFiel.setVisible(false);
+        }
         this.estadoEmp.setOnAction(this);
         this.estadoEmp.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Si")) {
@@ -306,12 +321,12 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
         estadoField.setVisible(false);
     }
-    public void settingNombreEmpresaField(){
+    public void settingNombreEmpresaField(String nombreEmp){
         this.nomEmpresaField =new HBox();
         this.nomEmpresaField.setAlignment(Pos.CENTER);
         Label nombreEmpresa=new Label("Nombre Empresa");
         nombreEmpresa.getStyleClass().add("tag");
-        this.nomEmpresa=new TextField();
+        this.nomEmpresa=new TextField(nombreEmp);
         this.nomEmpresa.getStyleClass().add("input");
         this.nomEmpresa.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
             validateNumbers(this.nomEmpresa, this.nomEmpresaError, newValue);
@@ -324,14 +339,14 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         inputContainer.setAlignment(Pos.CENTER);
         this.nomEmpresaField.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
-        nomEmpresaField.setVisible(false);
+
     }
-    public void settingCargoField(){
+    public void settingCargoField(String cargo){
         this.cargoFiel =new HBox();
         this.cargoFiel.setAlignment(Pos.CENTER);
         Label cargoLabel=new Label("Cargo");
         cargoLabel.getStyleClass().add("tag");
-        this.cargo=new TextField();
+        this.cargo=new TextField(cargo);
         this.cargo.getStyleClass().add("input");
         this.cargo.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
             validateNumbers(this.cargo, this.cargoError, newValue);
@@ -344,7 +359,7 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         inputContainer.setAlignment(Pos.CENTER);
         this.cargoFiel.getChildren().addAll(labelContainer, inputContainer);
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
-        cargoFiel.setVisible(false);
+
     }
     private void validateContainsArr(TextField ob, Label error, String value) {
         if (!this.util.containsArr(value)) {

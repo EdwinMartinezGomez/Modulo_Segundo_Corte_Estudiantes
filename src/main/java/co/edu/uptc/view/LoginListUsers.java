@@ -98,8 +98,13 @@ public class LoginListUsers extends Header  {
     }
     public void remove(Person p){
         PersonList.remove(p);
+        for (ClaseAux a:aux) {
+            if(a.getId().equals(p.getId())){
+                aux.remove(a);
+                break;
+            }
+        }
         refreshTable();
-
     }
     public void refreshTable() {
         table.getItems().clear();
