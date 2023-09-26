@@ -280,9 +280,11 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         phoneLabel.getStyleClass().add("tag");
         this.phone = new TextField();
         this.phone.getStyleClass().add("input");
-        this.phone.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateIdStyle(this.phone, this.phoneError, newValue);
-        }));
+        this.phone.setOnKeyReleased(event -> {
+            String newValue = this.phone.getText();
+            validateIdStyle(this.phone, this.phoneError,newValue);
+        });
+
         this.phoneError = new Label();
         this.phoneError.getStyleClass().add("errorLabel");
         this.phoneError.setVisible(false);
@@ -300,9 +302,10 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         phoneLabel.getStyleClass().add("tag");
         this.email = new TextField();
         this.email.getStyleClass().add("input");
-        this.email.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateContainsArr(this.email, this.emailError, newValue);
-        }));
+        this.email.setOnKeyReleased(event -> {
+            String newValue = this.email.getText();
+            validateContainsArr(this.email, this.emailError,newValue);
+        });
         this.emailError = new Label();
         this.emailError.getStyleClass().add("errorLabel");
         this.emailError.setVisible(false);
@@ -349,9 +352,10 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         nombreEmpresa.getStyleClass().add("tag");
         this.nomEmpresa=new TextField();
         this.nomEmpresa.getStyleClass().add("input");
-        this.nomEmpresa.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.nomEmpresa, this.nomEmpresaError, newValue);
-        }));
+        this.nomEmpresa.setOnKeyReleased(event -> {
+            String newValue = this.nomEmpresa.getText();
+            validateNumbers(this.nomEmpresa, this.nomEmpresaError,newValue);
+        });
         this.nomEmpresaError=new Label();
         this.nomEmpresaError.getStyleClass().add("errorLabel");
         this.nomEmpresaError.setVisible(false);
@@ -369,9 +373,10 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         cargoLabel.getStyleClass().add("tag");
         this.cargo=new TextField();
         this.cargo.getStyleClass().add("input");
-        this.cargo.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.cargo, this.cargoError, newValue);
-        }));
+        this.cargo.setOnKeyReleased(event -> {
+            String newValue = this.cargo.getText();
+            validateNumbers(this.cargo, this.cargoError,newValue);
+        });
         this.cargoError=new Label();
         this.cargoError.getStyleClass().add("errorLabel");
         this.cargoError.setVisible(false);
@@ -389,6 +394,11 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
                 ob.getStyleClass().add("errorInput");
                 error.setVisible(true);
             }
+        }
+        if (!this.util.containsArr(ob.getText()) && !ob.getText().isBlank()) {
+            error.setText("");
+            ob.getStyleClass().remove("errorInput");
+            error.setVisible(true);
         }
     }
 
@@ -529,9 +539,21 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
                 this.lastNameError.setText("Obligatorio*");
                 this.lastNameError.setVisible(true);
             }
-            if (this.id.getText().isBlank()) {
-                this.idError.setText("Obligatorio*");
-                this.idError.setVisible(true);
+            if (this.phone.getText().isBlank()) {
+                this.phoneError.setText("Obligatorio*");
+                this.phoneError.setVisible(true);
+            }
+            if (util.validateSizePhone(this.phone.getText())) {
+                this.phoneError.setText("Son 10 caracteres*");
+                this.phoneError.setVisible(true);
+            }
+            if (this.email.getText().isBlank() ) {
+                this.emailError.setText("olbigatorio*");
+                this.emailError.setVisible(true);
+            }
+            if (validateEmail(this.email.getText()) ) {
+                this.emailError.setText("Debe contener @*");
+                this.emailError.setVisible(true);
             }
         }
         if (e.getSource() == this.roles) {
@@ -553,7 +575,8 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      */
     public boolean validatePhone(String phone) {
         // Use a regular expression to check if the phone number contains only digits
-        return phone.matches("\\d+") && !phone.isBlank();
+
+        return util.validateSizePhone(phone) && phone.matches("\\d+") && !phone.isBlank();
     }
 
     /**

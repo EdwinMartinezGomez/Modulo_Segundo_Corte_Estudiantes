@@ -42,27 +42,6 @@
     "email": "maria.rodriguez01@uptc.edu.co"
   },
   {
-    "id": "153454879",
-    "userName": "aerer.rerer",
-    "password": "76XDLyh",
-    "role": "GRADUATED",
-    "email": "aerer.rerer@login.uptc.edu.co"
-  },
-  {
-    "id": "15345453",
-    "userName": "asdas.asdasd",
-    "password": "38NCCch",
-    "role": "SECRETARY",
-    "email": "asdas.asdasd@login.uptc.edu.co"
-  },
-  {
-    "id": "141452",
-    "userName": "ver.aaaa",
-    "password": "10RNHav",
-    "role": "GRADUATED",
-    "email": "ver.aaaa@login.uptc.edu.co"
-  },
-  {
     "id": "4387582",
     "userName": "maria.torres",
     "password": "48IAGqy",
@@ -91,11 +70,11 @@
     "email": "edwin.martinez@login.uptc.edu.co"
   },
   {
-    "id": "123543",
-    "userName": "ad.ad",
-    "password": "75QYHij",
+    "id": "11454",
+    "userName": "samuel.aaaa01",
+    "password": "19YVExg",
     "role": "GRADUATED",
-    "email": "ad.ad@login.uptc.edu.co"
+    "email": "samuel.aaaa01@login.uptc.edu.co"
   },
   {
     "id": "32589",
@@ -126,13 +105,6 @@
     "email": "fredy.alarcon01@uptc.edu.co"
   },
   {
-    "id": "112345",
-    "userName": "borrar.aaaa",
-    "password": "16TEMfp",
-    "role": "STUDENT",
-    "email": "borrar.aaaa@login.uptc.edu.co"
-  },
-  {
     "id": "10953483",
     "userName": "ivan.mendoza",
     "password": "HJ23jkil",
@@ -140,17 +112,10 @@
     "email": "ivan.mendoza@uptc.edu.co"
   },
   {
-    "id": "1212",
-    "userName": "asdas.asdasdsad",
-    "password": "84DHKcy",
+    "id": "11454",
+    "userName": "samuel.aaaa",
+    "password": "70DKInw",
     "role": "GRADUATED",
-    "email": "asdas.asdasdsad@login.uptc.edu.co"
-  },
-  {
-    "id": "3121321",
-    "userName": "asdf.f",
-    "password": "98OQHju",
-    "role": "GRADUATED",
-    "email": "asdf.f@login.uptc.edu.co"
+    "email": "samuel.aaaa@login.uptc.edu.co"
   }
 ]

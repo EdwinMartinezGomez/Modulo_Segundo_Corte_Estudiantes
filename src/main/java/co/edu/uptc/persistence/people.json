@@ -14,19 +14,21 @@
     }
   },
   {
-    "estadoEmp": false,
+    "estadoEmp": true,
+    "nombEmpresa": "asfasf",
+    "cargo": "desarolaoodasd asd",
     "egresado": true,
-    "id": "3121321",
-    "name": "asdf",
-    "lastname": "f",
-    "phone": "135465",
-    "email": "a@a",
+    "id": "11454",
+    "name": "Samuel",
+    "lastname": "aaaa",
+    "phone": "1234567891",
+    "email": "@",
     "account": {
-      "id": "3121321",
-      "userName": "asdf.f",
-      "password": "98OQHju",
+      "id": "11454",
+      "userName": "samuel.aaaa01",
+      "password": "19YVExg",
       "role": "GRADUATED",
-      "email": "asdf.f@login.uptc.edu.co"
+      "email": "samuel.aaaa01@login.uptc.edu.co"
     }
   },
   {
@@ -103,22 +105,6 @@
     }
   },
   {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "141452",
-    "name": "ver",
-    "lastname": "aaaa",
-    "phone": "14744",
-    "email": "a@a",
-    "account": {
-      "id": "141452",
-      "userName": "ver.aaaa",
-      "password": "10RNHav",
-      "role": "GRADUATED",
-      "email": "ver.aaaa@login.uptc.edu.co"
-    }
-  },
-  {
     "egresado": false,
     "id": "202210568",
     "name": "manuel",
@@ -134,20 +120,6 @@
     }
   },
   {
-    "id": "15345453",
-    "name": "asdas",
-    "lastname": "asdasd",
-    "phone": "4245343543",
-    "email": "sdas@a.asd",
-    "account": {
-      "id": "15345453",
-      "userName": "asdas.asdasd",
-      "password": "38NCCch",
-      "role": "SECRETARY",
-      "email": "asdas.asdasd@login.uptc.edu.co"
-    }
-  },
-  {
     "egresado": false,
     "id": "2020154",
     "name": "Juan",
@@ -160,37 +132,6 @@
       "password": "njksAPO293",
       "role": "STUDENT",
       "email": "juan.velandia@uptc.edu.co"
-    }
-  },
-  {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "153454879",
-    "name": "aerer",
-    "lastname": "rerer",
-    "phone": "45465",
-    "email": "wadsa@sda.com",
-    "account": {
-      "id": "153454879",
-      "userName": "aerer.rerer",
-      "password": "76XDLyh",
-      "role": "GRADUATED",
-      "email": "aerer.rerer@login.uptc.edu.co"
-    }
-  },
-  {
-    "egresado": false,
-    "id": "112345",
-    "name": "borrar",
-    "lastname": "aaaa",
-    "phone": "1245",
-    "email": "asdasd@asd",
-    "account": {
-      "id": "112345",
-      "userName": "borrar.aaaa",
-      "password": "16TEMfp",
-      "role": "STUDENT",
-      "email": "borrar.aaaa@login.uptc.edu.co"
     }
   },
   {
@@ -237,22 +178,6 @@
     }
   },
   {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "123543",
-    "name": "ad",
-    "lastname": "ad",
-    "phone": "1345431",
-    "email": "as@a.com",
-    "account": {
-      "id": "123543",
-      "userName": "ad.ad",
-      "password": "75QYHij",
-      "role": "GRADUATED",
-      "email": "ad.ad@login.uptc.edu.co"
-    }
-  },
-  {
     "egresado": false,
     "id": "2022159",
     "name": "Maria",
@@ -295,22 +220,6 @@
       "password": "35SCKqs",
       "role": "STUDENT",
       "email": "maria.perez@uptc.edu.co"
-    }
-  },
-  {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "1212",
-    "name": "asdas",
-    "lastname": "asdasdsad",
-    "phone": "13543",
-    "email": "a@a",
-    "account": {
-      "id": "1212",
-      "userName": "asdas.asdasdsad",
-      "password": "84DHKcy",
-      "role": "GRADUATED",
-      "email": "asdas.asdasdsad@login.uptc.edu.co"
     }
   },
   {

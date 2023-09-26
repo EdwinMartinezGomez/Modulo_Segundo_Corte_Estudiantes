@@ -71,10 +71,6 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         this.settingNameField(p.getName());
         this.settingLastNameField(p.getLastname());
         this.settingRoleField(p.getAccount().getRole());
-        this.nomEmpresaField = new HBox();
-        nomEmpresaField.setVisible(false);
-        this.cargoFiel = new HBox();
-        cargoFiel.setVisible(false);
         this.settingPhoneField(p.getPhone());
         this.settingEmailField(p.getEmail());
         this.settingSummitButton();
@@ -102,7 +98,6 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         return scene;
     }
     public void verifyType(Person p){
-        System.out.println(p.toString());
 
         if(p.getAccount().getRole().toLowerCase().equals(ROLES[4].toLowerCase())){
             graduated=(Graduated) p;
@@ -259,10 +254,13 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         phoneLabel.getStyleClass().add("tag");
         this.phone = new TextField(phone);
         this.phone.getStyleClass().add("input");
-        this.phone.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateIdStyle(this.phone, this.phoneError, newValue);
-        }));
-        this.phoneError = new Label();
+
+        this.phone.setOnKeyReleased(event -> {
+            String newValue = this.phone.getText();
+            validatePhoneStyle(this.phone, this.phoneError,newValue);
+        });
+
+        this.phoneError = new Label("");
         this.phoneError.getStyleClass().add("errorLabel");
         this.phoneError.setVisible(false);
         VBox labelContainer = new VBox(phoneLabel);
@@ -279,10 +277,13 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         phoneLabel.getStyleClass().add("tag");
         this.email = new TextField(email);
         this.email.getStyleClass().add("input");
-        this.email.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateContainsArr(this.email, this.emailError, newValue);
-        }));
-        this.emailError = new Label();
+
+        this.email.setOnKeyReleased(event -> {
+            String newValue = this.email.getText();
+            validateContainsArr(this.email, this.emailError,newValue);
+        });
+
+        this.emailError = new Label("");
         this.emailError.getStyleClass().add("errorLabel");
         this.emailError.setVisible(false);
         VBox labelContainer = new VBox(phoneLabel);
@@ -308,8 +309,8 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
             cargoFiel.setVisible(true);
         }else {
             this.estadoEmp.setValue(ESTADOS[1]);
-            this.settingNombreEmpresaField("a");
-            this.settingCargoField("b");
+            this.settingNombreEmpresaField("");
+            this.settingCargoField("");
             nomEmpresaField.setVisible(false);
             cargoFiel.setVisible(false);
         }
@@ -335,16 +336,23 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
     public void settingNombreEmpresaField(String nombreEmp){
         this.nomEmpresaField =new HBox();
         this.nomEmpresaField.setAlignment(Pos.CENTER);
+
         Label nombreEmpresa=new Label("Nombre Empresa");
         nombreEmpresa.getStyleClass().add("tag");
+
         this.nomEmpresa=new TextField(nombreEmp);
         this.nomEmpresa.getStyleClass().add("input");
-        this.nomEmpresa.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.nomEmpresa, this.nomEmpresaError, newValue);
-        }));
-        this.nomEmpresaError=new Label();
+
+        this.nomEmpresa.setOnKeyReleased(event -> {
+            String newValue = this.nomEmpresa.getText();
+            validateNumbers(this.nomEmpresa, this.nomEmpresaError,newValue);
+        });
+
+        this.nomEmpresaError=new Label("");
         this.nomEmpresaError.getStyleClass().add("errorLabel");
         this.nomEmpresaError.setVisible(false);
+        this.nomEmpresaError.setAlignment(Pos.BASELINE_RIGHT);
+
         VBox labelContainer = new VBox(nombreEmpresa);
         VBox inputContainer = new VBox(this.nomEmpresa, this.nomEmpresaError);
         inputContainer.setAlignment(Pos.CENTER);
@@ -359,9 +367,11 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         cargoLabel.getStyleClass().add("tag");
         this.cargo=new TextField(cargo);
         this.cargo.getStyleClass().add("input");
-        this.cargo.promptTextProperty().addListener(((observable, oldValue, newValue) -> {
-            validateNumbers(this.cargo, this.cargoError, newValue);
-        }));
+
+        this.cargo.setOnKeyReleased(event -> {
+            String newValue = this.cargo.getText();
+            validateNumbers(this.cargo, this.cargoError,newValue);
+        });
         this.cargoError=new Label();
         this.cargoError.getStyleClass().add("errorLabel");
         this.cargoError.setVisible(false);
@@ -373,12 +383,21 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
 
     }
     private void validateContainsArr(TextField ob, Label error, String value) {
+
         if (!this.util.containsArr(value)) {
             error.setText(error.getText() + "Debe contener @");
+
             if (!error.getText().contains("Debe contener @")) {
                 ob.getStyleClass().add("errorInput");
                 error.setVisible(true);
             }
+
+        }
+
+        if (!this.util.containsArr(ob.getText()) && !ob.getText().isBlank()) {
+            error.setText("");
+            ob.getStyleClass().remove("errorInput");
+            error.setVisible(true);
         }
     }
 
@@ -389,27 +408,34 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
      * @param error The Label to display error messages
      * @param value The input value to be validated
      */
-    private void validateIdStyle(TextField ob, Label error, String value) {
+    private void validatePhoneStyle(TextField ob, Label error, String value) {
         if (value.isBlank() || this.util.containSpecialCharactersId(value)) {
             ob.getStyleClass().add("errorInput");
             error.setVisible(true);
-        }
+            if (value.isBlank()) {
+                if (!error.getText().contains(" Obligatorio*")) {
+                    error.setText(error.getText() + " Obligatorio*");
+                    error.setVisible(true);
+                }
+            }
 
-        if (value.isBlank()) {
-            if (!error.getText().contains(" Obligatorio*")) {
-                error.setText(error.getText() + " Obligatorio*");
+            if (this.util.containSpecialCharactersId(value)) {
+                if (!error.getText().contains(" Sin letras o  caracteres especiales ")) {
+                    error.setText(error.getText() + " Sin letras o  caracteres especiales ");
+                    error.setVisible(true);
+                }
+            }
+            if (! util.validateSizePhone(this.phone.getText())) {
+                this.phoneError.setText("Son 10 numeros*");
+                this.phoneError.setVisible(true);
             }
         }
 
-        if (this.util.containSpecialCharactersId(value)) {
-            if (!error.getText().contains(" Sin caracteres especiales")) {
-                error.setText(error.getText() + " Sin caracteres especiales");
-            }
-        }
 
         if (!this.util.containSpecialCharactersId(ob.getText()) && !ob.getText().isBlank()) {
             error.setText("");
             ob.getStyleClass().remove("errorInput");
+            error.setVisible(true);
         }
 
     }
@@ -431,22 +457,26 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
             if (value.isBlank()) {
                 if (!error.getText().contains(" Obligatorio*")) {
                     error.setText(error.getText() + " Obligatorio*");
+                    error.setVisible(true);
                 }
             }
             if (value.startsWith(" ")) {
                 if (!error.getText().contains("No espacios iniciales.")) {
                     error.setText(error.getText() + "No espacios iniciales.");
+                    error.setVisible(true);
                 }
             }
             if (this.util.containsNums(value)) {
                 if (!error.getText().contains(" Sin Números")) {
                     error.setText(error.getText() + " Sin Números");
+                    error.setVisible(true);
                 }
             }
 
             if (this.util.containSpecialCharactersNums(value)) {
                 if (!error.getText().contains(" Sin caracteres especiales")) {
                     error.setText(error.getText() + " Sin caracteres especiales");
+                    error.setVisible(true);
                 }
             }
         }
@@ -488,26 +518,80 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         }
         if(e.getSource()==this.summit){
 
-            System.out.println(validateTextFields(null));
+
+            if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText())  && lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[1])){
+
+                //elimina
+                lgView.controller.getPersonController().removePerson(person);
+                lgView.controller.getAcountController().removeAcount(person.getAccount());
+
+                //crea
+                boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(),person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue());
+                if (response) {
+                    this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
+                    this.message.setText("Añadido con éxito!");
+                } else {
+                    this.message.setText("Ha ocurrido un error!");
+                }
+                this.messageContainer.setVisible(true);
+                lgView.loginListUsers.remove(person);
+            }else if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) &&  lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[0]) && this.validateNames(this.nomEmpresa.getText())&& this.validateNames(this.cargo.getText())) {
+
+                //elimina
+                lgView.controller.getPersonController().removePerson(person);
+                lgView.controller.getAcountController().removeAcount(person.getAccount());
+
+
+                //crea
+
+                boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(), person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue(),true,this.nomEmpresa.getText(),this.cargo.getText());
+                if (response) {
+                    this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
+                    this.message.setText("Añadido con éxito!");
+                } else {
+                    this.message.setText("Ha ocurrido un error!");
+                }
+                this.messageContainer.setVisible(true);
+            } else {
+                this.message.setText("Los nombres no deben contener espacios al iniciar números o caracteres especiales.\n" +
+                        "Asegúrese de que el teléfono no contenga letras y que el correo electrónico tenga '@'.");
+                this.messageContainer.setVisible(true);
+            }
+
+            lgView.loginListUsers.remove(person);
+            if (this.name.getText().isBlank()) {
+                this.nameError.setText("Obligatorio*");
+                this.nameError.setVisible(true);
+            }
+            if (this.lastName.getText().isBlank()) {
+                this.lastNameError.setText("Obligatorio*");
+                this.lastNameError.setVisible(true);
+            }
+            if (this.phone.getText().isBlank()) {
+                this.phoneError.setText("Obligatorio*");
+                this.phoneError.setVisible(true);
+            }
+            if (! util.validateSizePhone(this.phone.getText())) {
+                this.phoneError.setText("Son 10 numeros , sin letras*");
+                this.phoneError.setVisible(true);
+            }
+            if (this.email.getText().isBlank() ) {
+                this.emailError.setText("olbigatorio*");
+                this.emailError.setVisible(true);
+            }
+            if (! singInView.validateEmail(this.email.getText()) ) {
+                this.emailError.setText("Debe contener @*");
+                this.emailError.setVisible(true);
+            }
+
+        }
 
 
 
-        }
-    }
-    public boolean validateTextFields(Person per){
-        System.out.println("Estoy en el metodo " + name.getText());
-        boolean nameV = false, lastNameV = false, phoneV = false, emailV = false;
-        //validacion por capas.
-        nameV = validateNames(name.getText());
-        lastNameV =  validateNames(lastName.getText());
-        if(singInView.validatePhone(phone.getText()) && util.validateSizePhone(phone.getText())){
-        phoneV = true;
-        }
-        emailV = singInView.validateEmail(email.getText());
-        if (nameV && lastNameV && phoneV && emailV){
-            return true;
-        }
-        return false;
+
+
+
+
     }
 
 
