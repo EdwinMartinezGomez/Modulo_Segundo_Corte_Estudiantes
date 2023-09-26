@@ -530,8 +530,8 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
                 // El usuario confirmó, realizar la eliminación aquí
                 lgView.controller.getPersonController().removePerson(person);
                 lgView.controller.getAcountController().removeAcount(person.getAccount());
-                lgView.loginListUsers.remove(person);
             }
+            lgView.loginListUsers.remove(person);
         }
 
         if (e.getSource() == this.summit) {

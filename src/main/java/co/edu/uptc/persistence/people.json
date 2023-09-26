@@ -104,21 +104,6 @@
   },
   {
     "egresado": false,
-    "id": "asdasdasd",
-    "name": "edwin",
-    "lastname": "adasd",
-    "phone": "1354546164",
-    "email": "a@a",
-    "account": {
-      "id": "asdasdasd",
-      "userName": "edwin.adasd",
-      "password": "43GGKoi",
-      "role": "STUDENT",
-      "email": "edwin.adasd@login.uptc.edu.co"
-    }
-  },
-  {
-    "egresado": false,
     "id": "202210568",
     "name": "manuel",
     "lastname": "Martinez",
