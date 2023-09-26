@@ -178,6 +178,11 @@ public class AccountController {
         return accountsInfo;
     }
 
+    public void removeAcount(Account acc){
+        accounts.remove(acc);
+        updateInformationFile();
+    }
+
     private String[] getAllpasswords(){
         String[] passwords = new String[this.accounts.size()];
         ArrayList<Account> listAccount = new ArrayList<>(this.accounts);

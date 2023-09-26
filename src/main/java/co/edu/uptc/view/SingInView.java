@@ -551,7 +551,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * @param phone The phone number to be validated
      * @return True if the phone number is valid (meets the specified criteria), false otherwise
      */
-    private boolean validatePhone(String phone) {
+    public boolean validatePhone(String phone) {
         // Use a regular expression to check if the phone number contains only digits
         return phone.matches("\\d+") && !phone.isBlank();
     }
@@ -560,9 +560,9 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
      * Validates the input style and displays appropriate error messages for the email field.
      *
      * @param email The email address to be validated
-     laura.cast* @return True if the email address is valid (contains "@"), false otherwise
+     * @return True if the email address is valid (contains "@"), false otherwise
      */
-    private boolean validateEmail(String email) {
+    public boolean validateEmail(String email) {
         return email.contains("@");
     }
 }

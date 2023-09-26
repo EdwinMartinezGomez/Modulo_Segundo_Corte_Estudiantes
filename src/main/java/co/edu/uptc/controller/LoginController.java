@@ -20,6 +20,11 @@ public class LoginController {
     private JsonStorageUtilities jsonStorageUtilities;
     Account loggedAcount;
     Person loggedPerson;
+
+    public AccountController getAcountController() {
+        return acc;
+    }
+
     AccountController acc;
 
     public LoginController(){
@@ -189,6 +194,7 @@ public class LoginController {
     public PersonController getPersonController() {
         return personController;
     }
+
 
 
 }

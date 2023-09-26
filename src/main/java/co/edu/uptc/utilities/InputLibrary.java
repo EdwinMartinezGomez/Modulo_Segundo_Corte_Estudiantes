@@ -148,7 +148,9 @@ public class InputLibrary {
         String noNums = str.replaceAll("[0-9]", "");
         return str.length() > noNums.length();
     }
-
+    public boolean validateSizePhone(String phone){
+        return phone.length() == 10;
+    }
     public boolean containsArr(String str){
         return str.contains("@");
     }

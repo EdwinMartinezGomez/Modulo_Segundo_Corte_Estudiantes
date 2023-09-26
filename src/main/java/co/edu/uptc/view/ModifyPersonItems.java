@@ -23,7 +23,8 @@ import java.io.File;
 public class ModifyPersonItems  extends  Header implements EventHandler<ActionEvent> {
     BorderPane borderPane;
     LoginView lgView;
-    private InputLibrary util;
+    SingInView singInView;
+    InputLibrary util;
     private HBox nameField;
     private HBox lastNameField;
     private HBox roleField;
@@ -70,6 +71,10 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
         this.settingNameField(p.getName());
         this.settingLastNameField(p.getLastname());
         this.settingRoleField(p.getAccount().getRole());
+        this.nomEmpresaField = new HBox();
+        nomEmpresaField.setVisible(false);
+        this.cargoFiel = new HBox();
+        cargoFiel.setVisible(false);
         this.settingPhoneField(p.getPhone());
         this.settingEmailField(p.getEmail());
         this.settingSummitButton();
@@ -98,13 +103,19 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
     }
     public void verifyType(Person p){
         System.out.println(p.toString());
-        graduated=(Graduated) p;
+
+        if(p.getAccount().getRole().toLowerCase().equals(ROLES[4].toLowerCase())){
+            graduated=(Graduated) p;
+
+        }
+
         person=p;
     }
     public  ModifyPersonItems(LoginView lgView,  Button bt){
         super(bt);
         this.lgView = lgView;
         this.util = new InputLibrary();
+        this.singInView = new SingInView(null, null);
         borderPane = new BorderPane();
     }
     private void settingNameField(String name) {
@@ -179,7 +190,7 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
             this.settingEstadoField(graduated.getEstadoEmp());
             estadoField.setVisible(true);
         }else {
-            this.settingEstadoField(graduated.getEstadoEmp());
+            this.settingEstadoField(false);
             estadoField.setVisible(false);
         }
         this.roles.setOnAction(this);
@@ -297,8 +308,8 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
             cargoFiel.setVisible(true);
         }else {
             this.estadoEmp.setValue(ESTADOS[1]);
-            this.settingNombreEmpresaField(graduated.getNombEmpresa());
-            this.settingCargoField(graduated.getCargo());
+            this.settingNombreEmpresaField("a");
+            this.settingCargoField("b");
             nomEmpresaField.setVisible(false);
             cargoFiel.setVisible(false);
         }
@@ -470,11 +481,35 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
     public void handle(ActionEvent e) {
         if(e.getSource()==this.delete){
             lgView.controller.getPersonController().removePerson(person);
+            lgView.controller.getAcountController().removeAcount(person.getAccount());
+            //lo quita de la tabla
             lgView.loginListUsers.remove(person);
-            System.out.println("borrando");
+
         }
         if(e.getSource()==this.summit){
-            System.out.println("guardado");
+
+            System.out.println(validateTextFields(null));
+
+
+
         }
     }
+    public boolean validateTextFields(Person per){
+        System.out.println("Estoy en el metodo " + name.getText());
+        boolean nameV = false, lastNameV = false, phoneV = false, emailV = false;
+        //validacion por capas.
+        nameV = validateNames(name.getText());
+        lastNameV =  validateNames(lastName.getText());
+        if(singInView.validatePhone(phone.getText()) && util.validateSizePhone(phone.getText())){
+        phoneV = true;
+        }
+        emailV = singInView.validateEmail(email.getText());
+        if (nameV && lastNameV && phoneV && emailV){
+            return true;
+        }
+        return false;
+    }
+
+
+
 }
