@@ -70,6 +70,13 @@
     "email": "hjas.sadjsad@login.uptc.edu.co"
   },
   {
+    "id": "141452",
+    "userName": "ver.aaaa",
+    "password": "10RNHav",
+    "role": "GRADUATED",
+    "email": "ver.aaaa@login.uptc.edu.co"
+  },
+  {
     "id": "4387582",
     "userName": "maria.torres",
     "password": "48IAGqy",
@@ -96,27 +103,6 @@
     "password": "28WIEag",
     "role": "GRADUATED",
     "email": "edwin.martinez@login.uptc.edu.co"
-  },
-  {
-    "id": "sad",
-    "userName": "sad.sad",
-    "password": "84DSGto",
-    "role": "STUDENT",
-    "email": "sad.sad@login.uptc.edu.co"
-  },
-  {
-    "id": "asd12",
-    "userName": "asd.asd",
-    "password": "49UMHfi",
-    "role": "STUDENT",
-    "email": "asd.asd@login.uptc.edu.co"
-  },
-  {
-    "id": "2321313",
-    "userName": "sadsad.sadsad",
-    "password": "97FFUlk",
-    "role": "STUDENT",
-    "email": "sadsad.sadsad@login.uptc.edu.co"
   },
   {
     "id": "123543",
@@ -159,12 +145,5 @@
     "password": "HJ23jkil",
     "role": "PROFESSOR",
     "email": "ivan.mendoza@uptc.edu.co"
-  },
-  {
-    "id": "123",
-    "userName": "asdsasad.sad",
-    "password": "94VIQct",
-    "role": "STUDENT",
-    "email": "asdsasad.sad@login.uptc.edu.co"
   }
 ]

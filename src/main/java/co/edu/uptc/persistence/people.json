@@ -87,6 +87,24 @@
     }
   },
   {
+    "estadoEmp": true,
+    "nombEmpresa": "penes",
+    "cargo": "chupar",
+    "egresado": true,
+    "id": "141452",
+    "name": "ver",
+    "lastname": "aaaa",
+    "phone": "14744",
+    "email": "a@a",
+    "account": {
+      "id": "141452",
+      "userName": "ver.aaaa",
+      "password": "10RNHav",
+      "role": "GRADUATED",
+      "email": "ver.aaaa@login.uptc.edu.co"
+    }
+  },
+  {
     "egresado": false,
     "id": "202210568",
     "name": "manuel",
@@ -102,21 +120,6 @@
     }
   },
   {
-    "egresado": false,
-    "id": "123",
-    "name": "asdsasad",
-    "lastname": "sad",
-    "phone": "",
-    "email": "aas23",
-    "account": {
-      "id": "123",
-      "userName": "asdsasad.sad",
-      "password": "94VIQct",
-      "role": "STUDENT",
-      "email": "asdsasad.sad@login.uptc.edu.co"
-    }
-  },
-  {
     "id": "15345453",
     "name": "asdas",
     "lastname": "asdasd",
@@ -128,21 +131,6 @@
       "password": "38NCCch",
       "role": "SECRETARY",
       "email": "asdas.asdasd@login.uptc.edu.co"
-    }
-  },
-  {
-    "egresado": false,
-    "id": "sad",
-    "name": "sad",
-    "lastname": "sad",
-    "phone": "asd",
-    "email": "sad",
-    "account": {
-      "id": "sad",
-      "userName": "sad.sad",
-      "password": "84DSGto",
-      "role": "STUDENT",
-      "email": "sad.sad@login.uptc.edu.co"
     }
   },
   {
@@ -173,36 +161,6 @@
       "password": "njksAPO293",
       "role": "STUDENT",
       "email": "juan.velandia@uptc.edu.co"
-    }
-  },
-  {
-    "egresado": false,
-    "id": "asd12",
-    "name": "asd",
-    "lastname": "asd",
-    "phone": "a",
-    "email": "!as@asjkjsad",
-    "account": {
-      "id": "asd12",
-      "userName": "asd.asd",
-      "password": "49UMHfi",
-      "role": "STUDENT",
-      "email": "asd.asd@login.uptc.edu.co"
-    }
-  },
-  {
-    "egresado": false,
-    "id": "2321313",
-    "name": "sadsad",
-    "lastname": "sadsad",
-    "phone": "123213",
-    "email": "sda123",
-    "account": {
-      "id": "2321313",
-      "userName": "sadsad.sadsad",
-      "password": "97FFUlk",
-      "role": "STUDENT",
-      "email": "sadsad.sadsad@login.uptc.edu.co"
     }
   },
   {
@@ -280,9 +238,7 @@
     }
   },
   {
-    "estadoEmp": true,
-    "nombEmpresa": "asd",
-    "cargo": "asdasd",
+    "estadoEmp": false,
     "egresado": true,
     "id": "123543",
     "name": "ad",

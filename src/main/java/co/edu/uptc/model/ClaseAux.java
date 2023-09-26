@@ -10,17 +10,28 @@ public class ClaseAux  {
     private String lastname;
     private String phone;
     private String email;
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    private String pass;
     private String role;
     private String emailGenerado;
     private Button bt;
 
-    public ClaseAux(String id, String name, String lastname, String phone, String email, String role, String emailGenerado,Button bt) {
+    public ClaseAux(String id, String name, String lastname, String phone, String email, String role,String pass, String emailGenerado,Button bt) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;
         this.email = email;
         this.role = role;
+        this.pass = pass;
         this.emailGenerado = emailGenerado;
         this.bt=bt;
     }

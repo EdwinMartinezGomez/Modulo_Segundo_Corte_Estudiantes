@@ -31,6 +31,7 @@ public class LoginListUsers extends Header  {
     TableColumn actionColumn;
     TableColumn emailColumn;
     TableColumn phoneColumn;
+    TableColumn passwordColum;
     TableColumn emailGeneratedColumn;
     Label buscar;
     TextField searchField;
@@ -124,7 +125,7 @@ public class LoginListUsers extends Header  {
         PersonList.removeIf(account -> !updatedAccounts.contains(account));
         //accountList.removeIf(account -> !accounts.contains(account));
         for (Person p:this.PersonList) {
-            ClaseAux c=new ClaseAux(p.getId(),p.getName(),p.getLastname(),p.getPhone(),p.getEmail(),p.getAccount().getRole(),p.getAccount().getEmail(),new Button("Modificar"));
+            ClaseAux c=new ClaseAux(p.getId(),p.getName(),p.getLastname(),p.getPhone(),p.getEmail(),p.getAccount().getRole(),p.getAccount().getPassword(),p.getAccount().getEmail(),new Button("Modificar"));
             aux.add(c);
         }
     }
@@ -172,7 +173,9 @@ public class LoginListUsers extends Header  {
         emailColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("email"));
         phoneColumn = new TableColumn<ClaseAux, String> ("Phone");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("phone"));
-        emailGeneratedColumn = new TableColumn<ClaseAux, String> ("email generated");
+        passwordColum = new TableColumn<ClaseAux, String> ("Password");
+        passwordColum.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("pass"));
+        emailGeneratedColumn = new TableColumn<ClaseAux, String> ("Institucional email");
         emailGeneratedColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux, String>("emailGenerado"));
         actionColumn = new TableColumn<ClaseAux, Button>("Actions");
         actionColumn.setCellValueFactory(new PropertyValueFactory<ClaseAux,Button>("bt"));
@@ -201,6 +204,7 @@ public class LoginListUsers extends Header  {
         table.getColumns().add(roleColumn);
         table.getColumns().add(emailColumn);
         table.getColumns().add(phoneColumn);
+        table.getColumns().add(passwordColum);
         table.getColumns().add(emailGeneratedColumn);
         table.getColumns().add(actionColumn);
 
