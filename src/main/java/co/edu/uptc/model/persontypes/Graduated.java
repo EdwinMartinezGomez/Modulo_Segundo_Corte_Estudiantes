@@ -8,15 +8,14 @@ public class Graduated  extends Student {
     private String cargo;
 
 
-
     public Graduated(boolean estadoEmp, String nombEmpresa, String cargo) {
         this.estadoEmp = estadoEmp;
         this.nombEmpresa = nombEmpresa;
         this.cargo = cargo;
     }
 
-    public Graduated(String id, boolean egresado, boolean estadoEmp, String nombEmpresa, String cargo) {
-        super(id, egresado);
+    public Graduated(boolean estadoEmp, String nombEmpresa, String cargo, String id, String name, String lastname, String phone, String email, Account account, boolean egresado) {
+        super(id, name, lastname, phone, email, account, egresado);
         this.estadoEmp = estadoEmp;
         this.nombEmpresa = nombEmpresa;
         this.cargo = cargo;
@@ -37,7 +36,7 @@ public class Graduated  extends Student {
         super(id,name, lastName, phone, email,true);
     }
 
-    public boolean isEstadoEmp() {
+    public boolean getEstadoEmp() {
         return estadoEmp;
     }
 
@@ -63,7 +62,7 @@ public class Graduated  extends Student {
 
     @Override
     public String toString() {
-        return "Graduated [estadoEmp=" + estadoEmp + ", nombEmpresa=" + nombEmpresa + ", cargo=" + cargo + "]";
+        return super.toString()+"Graduated [estadoEmp=" + estadoEmp + ", nombEmpresa=" + nombEmpresa + ", cargo=" + cargo + "]";
     }
 
 }

@@ -8,11 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -34,6 +32,8 @@ public class LoginListUsers extends Header  {
     TableColumn emailColumn;
     TableColumn phoneColumn;
     TableColumn emailGeneratedColumn;
+    Label buscar;
+    TextField searchField;
     Button Home;
     ClaseAux claseAux;
     ModifyPersonItems modifyPersons;
@@ -63,7 +63,22 @@ public class LoginListUsers extends Header  {
     public Scene loginListUsers(){
         updateTable();
         table.setItems(aux);
+        buscar=new Label("Buscar persona\npor nombre");
+        searchField = new TextField();
+        searchField.setPromptText("Buscar...");
+        searchField.setMaxWidth(120);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTable(newValue);
+        });
+        borderPane = new BorderPane();
         borderPane.setCenter(table);
+        HBox buscarLabel=new HBox();
+        buscarLabel.getChildren().addAll(buscar,searchField);
+        buscarLabel.setAlignment(Pos.CENTER);
+        buscarLabel.setSpacing(10);
+        borderPane.setBottom(buscarLabel);
+        VBox.setMargin(table, new javafx.geometry.Insets(10));
+        VBox.setMargin(buscarLabel, new javafx.geometry.Insets(0,10,0,0));
         HBox header = this.getHeader();
         this.setOption("Ver cuentas");
         this.setName(parent.controller.getName());
@@ -71,7 +86,24 @@ public class LoginListUsers extends Header  {
         Scene scene = new Scene(root, 1000, 600);
         return scene;
     }
+    private void filterTable(String searchTerm) {
+        ObservableList<ClaseAux> filteredData = FXCollections.observableArrayList();
+        for (ClaseAux person : aux) {
+            if (person.getName().toLowerCase().contains(searchTerm.toLowerCase())||person.getLastname().toLowerCase().contains(searchTerm.toLowerCase())) {
+                filteredData.add(person);
+            }
+        }
+        table.setItems(filteredData);
+    }
+    public void remove(Person p){
+        PersonList.remove(p);
+        refreshTable();
 
+    }
+    public void refreshTable() {
+        table.getItems().clear();
+        table.getItems().addAll(aux);
+    }
     // Método para actualizar la tabla con las cuentas actuales
     private void updateTable() {
         List<Person> updatedAccounts = parent.controller.getPersonController().getPersons();

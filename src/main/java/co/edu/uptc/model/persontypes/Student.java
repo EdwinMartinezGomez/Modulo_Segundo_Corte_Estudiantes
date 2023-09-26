@@ -12,7 +12,6 @@ public class Student extends Person {
     }
 
 
-
     public Student(String id, boolean egresado) {
         this.setId(id);
         this.egresado = egresado;

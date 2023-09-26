@@ -56,9 +56,7 @@
     }
   },
   {
-    "estadoEmp": true,
-    "nombEmpresa": "posible",
-    "cargo": "programer",
+    "estadoEmp": false,
     "egresado": true,
     "id": "105009479",
     "name": "edwin",
@@ -279,6 +277,24 @@
       "password": "12345",
       "role": "ADMINISTRATOR",
       "email": "fredy.alarcon01@uptc.edu.co"
+    }
+  },
+  {
+    "estadoEmp": true,
+    "nombEmpresa": "asd",
+    "cargo": "asdasd",
+    "egresado": true,
+    "id": "123543",
+    "name": "ad",
+    "lastname": "ad",
+    "phone": "1345431",
+    "email": "as@a.com",
+    "account": {
+      "id": "123543",
+      "userName": "ad.ad",
+      "password": "75QYHij",
+      "role": "GRADUATED",
+      "email": "ad.ad@login.uptc.edu.co"
     }
   },
   {

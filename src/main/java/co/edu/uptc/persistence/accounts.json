@@ -91,18 +91,18 @@
     "email": "fredy.alarcon@uptc.edu.co"
   },
   {
-    "id": "sad",
-    "userName": "sad.sad",
-    "password": "84DSGto",
-    "role": "STUDENT",
-    "email": "sad.sad@login.uptc.edu.co"
-  },
-  {
     "id": "105009479",
     "userName": "edwin.martinez",
     "password": "28WIEag",
     "role": "GRADUATED",
     "email": "edwin.martinez@login.uptc.edu.co"
+  },
+  {
+    "id": "sad",
+    "userName": "sad.sad",
+    "password": "84DSGto",
+    "role": "STUDENT",
+    "email": "sad.sad@login.uptc.edu.co"
   },
   {
     "id": "asd12",
@@ -117,6 +117,13 @@
     "password": "97FFUlk",
     "role": "STUDENT",
     "email": "sadsad.sadsad@login.uptc.edu.co"
+  },
+  {
+    "id": "123543",
+    "userName": "ad.ad",
+    "password": "75QYHij",
+    "role": "GRADUATED",
+    "email": "ad.ad@login.uptc.edu.co"
   },
   {
     "id": "32589",

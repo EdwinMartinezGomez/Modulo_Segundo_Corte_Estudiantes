@@ -1,5 +1,7 @@
 package co.edu.uptc.model;
 
+import co.edu.uptc.model.persontypes.Graduated;
+
 import java.util.Objects;
 
 /**

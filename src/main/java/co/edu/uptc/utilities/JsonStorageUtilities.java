@@ -5,6 +5,7 @@ import co.edu.uptc.model.Person;
 import co.edu.uptc.model.persontypes.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -120,7 +121,15 @@ public class JsonStorageUtilities {
                     existingContentsPersons.add(new Administrator(person.getId(),person.getName(),person.getLastname(), person.getAccount(),person.getEmail(),person.getPhone()));
                     break;
                 case "GRADUATED":
-                    existingContentsPersons.add(new Graduated(person.getId(),person.getName(),person.getLastname(), person.getPhone(), person.getEmail(),person.getAccount()));
+                    if (person instanceof Graduated) {
+                        Graduated graduated = (Graduated) person;
+                        System.out.println("cargo"+graduated.getCargo());
+                        System.out.println("empresa"+graduated.getNombEmpresa());
+                        existingContentsPersons.add(new Graduated(graduated.getEstadoEmp(), graduated.getNombEmpresa(), graduated.getCargo(), person.getId(), person.getName(), person.getLastname(), person.getPhone(), person.getEmail(), person.getAccount(), graduated.isEgresado()));
+                    } else {
+                        Graduated graduated = new Graduated(person.getId(), person.getName(), person.getLastname(), person.getPhone(), person.getEmail(), person.getAccount() );
+                        existingContentsPersons.add(graduated);
+                    }
                     break;
             }
         }

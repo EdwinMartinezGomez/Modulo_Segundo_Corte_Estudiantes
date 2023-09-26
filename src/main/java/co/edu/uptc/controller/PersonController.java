@@ -74,7 +74,10 @@ public class PersonController {
         }
         return false;
     }
-
+    public void removePerson(Person persoEliminite){
+        personCollection.remove(persoEliminite);
+        updateInformationFile();
+    }
     /**
      * This method allows to assing an account to a person by id.
      * @param id id of the person
