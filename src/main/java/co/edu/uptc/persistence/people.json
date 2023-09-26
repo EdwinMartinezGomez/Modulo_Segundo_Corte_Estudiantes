@@ -14,22 +14,6 @@
     }
   },
   {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "11454",
-    "name": "Samuel",
-    "lastname": "aaaa",
-    "phone": "1234567891",
-    "email": "@",
-    "account": {
-      "id": "11454",
-      "userName": "samuel.aaaa01",
-      "password": "19YVExg",
-      "role": "GRADUATED",
-      "email": "samuel.aaaa01@login.uptc.edu.co"
-    }
-  },
-  {
     "id": "1006784563",
     "name": "Jairo",
     "lastname": "Riaño",
@@ -69,22 +53,6 @@
       "password": "Masfx83",
       "role": "ADMINISTRATOR",
       "email": "laura.castillo@uptc.edu.co"
-    }
-  },
-  {
-    "estadoEmp": false,
-    "egresado": true,
-    "id": "105009479",
-    "name": "edwin",
-    "lastname": "martinez",
-    "phone": "3225915375",
-    "email": "edwin991529@gmail.com",
-    "account": {
-      "id": "105009479",
-      "userName": "edwin.martinez",
-      "password": "28WIEag",
-      "role": "GRADUATED",
-      "email": "edwin.martinez@login.uptc.edu.co"
     }
   },
   {

@@ -302,10 +302,14 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         phoneLabel.getStyleClass().add("tag");
         this.email = new TextField();
         this.email.getStyleClass().add("input");
+
         this.email.setOnKeyReleased(event -> {
             String newValue = this.email.getText();
             validateContainsArr(this.email, this.emailError,newValue);
         });
+
+
+
         this.emailError = new Label();
         this.emailError.getStyleClass().add("errorLabel");
         this.emailError.setVisible(false);
@@ -387,20 +391,26 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         HBox.setHgrow(inputContainer, Priority.ALWAYS);
         cargoFiel.setVisible(false);
     }
+
     private void validateContainsArr(TextField ob, Label error, String value) {
+        String errorMessage = "Debe contener @";
+
         if (!this.util.containsArr(value)) {
-            error.setText(error.getText() + "Debe contener @");
-            if (!error.getText().contains("Debe contener @")) {
+            if (!error.getText().contains(errorMessage)) {
+                error.setText(error.getText() + errorMessage);
                 ob.getStyleClass().add("errorInput");
                 error.setVisible(true);
             }
-        }
-        if (this.util.containsArr(ob.getText()) && !ob.getText().isBlank()) {
-            error.setText("");
-            ob.getStyleClass().remove("errorInput");
-            error.setVisible(true);
+        } else {
+            // Elimina el mensaje de error si se cumple la condición
+            error.setText(error.getText().replace(errorMessage, ""));
+            if (error.getText().isEmpty()) {
+                ob.getStyleClass().remove("errorInput");
+                error.setVisible(false);
+            }
         }
     }
+
 
     /**
      * Validates the input style and displays appropriate error messages for the ID field.

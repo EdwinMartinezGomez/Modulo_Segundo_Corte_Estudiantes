@@ -108,7 +108,7 @@ public class LoginListUsers extends Header  {
     }
     public void refreshTable() {
         table.getItems().clear();
-        table.getItems().addAll(aux);
+        aux=FXCollections.observableArrayList();
     }
     // Método para actualizar la tabla con las cuentas actuales
     private void updateTable() {
@@ -116,6 +116,7 @@ public class LoginListUsers extends Header  {
         List<Account> accounts=parent.controller.getPersonController().getAccounts();
         // Comparar las cuentas actuales con las cuentas en la tabla
         // Agregar cuentas nuevas si las hay
+        refreshTable();
         for (Person updatedAccount : updatedAccounts) {
             if (!PersonList.contains(updatedAccount)) {
                 addPerson(updatedAccount);
@@ -143,7 +144,7 @@ public class LoginListUsers extends Header  {
      */
     public void addPerson(Person account){
         PersonList.add(account);
-    }
+}
     /*public void addAccount(Account account){
         accountList.add(account);
     }*/
