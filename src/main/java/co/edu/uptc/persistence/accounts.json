@@ -42,6 +42,13 @@
     "email": "maria.rodriguez01@uptc.edu.co"
   },
   {
+    "id": "asdasdasd",
+    "userName": "edwin.adasd",
+    "password": "43GGKoi",
+    "role": "STUDENT",
+    "email": "edwin.adasd@login.uptc.edu.co"
+  },
+  {
     "id": "4387582",
     "userName": "maria.torres",
     "password": "48IAGqy",
@@ -110,12 +117,5 @@
     "password": "HJ23jkil",
     "role": "PROFESSOR",
     "email": "ivan.mendoza@uptc.edu.co"
-  },
-  {
-    "id": "11454",
-    "userName": "samuel.aaaa",
-    "password": "70DKInw",
-    "role": "GRADUATED",
-    "email": "samuel.aaaa@login.uptc.edu.co"
   }
 ]

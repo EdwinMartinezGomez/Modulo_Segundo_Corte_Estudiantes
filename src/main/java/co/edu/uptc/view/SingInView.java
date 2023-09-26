@@ -282,7 +282,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
         this.phone.getStyleClass().add("input");
         this.phone.setOnKeyReleased(event -> {
             String newValue = this.phone.getText();
-            validateIdStyle(this.phone, this.phoneError,newValue);
+            validatePhoneStyle(this.phone, this.phoneError,newValue);
         });
 
         this.phoneError = new Label();
@@ -395,7 +395,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
                 error.setVisible(true);
             }
         }
-        if (!this.util.containsArr(ob.getText()) && !ob.getText().isBlank()) {
+        if (this.util.containsArr(ob.getText()) && !ob.getText().isBlank()) {
             error.setText("");
             ob.getStyleClass().remove("errorInput");
             error.setVisible(true);
@@ -476,6 +476,44 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
             ob.getStyleClass().remove("errorInput");
         }
     }
+    private void validatePhoneStyle(TextField ob, Label error, String value) {
+        if (value.isBlank() || this.util.containSpecialCharactersId(value)||this.util.contieneSoloNumeros(value)) {
+            ob.getStyleClass().add("errorInput");
+            error.setVisible(true);
+            if (value.isBlank()) {
+                if (!error.getText().contains(" Obligatorio*")) {
+                    error.setText(error.getText() + " Obligatorio*");
+                    error.setVisible(true);
+                }
+            }
+
+            if (this.util.containSpecialCharactersId(value)) {
+                if (!error.getText().contains("caracteres especiales ")) {
+                    error.setText(error.getText() + "caracteres especiales ");
+                    error.setVisible(true);
+                }
+            }
+            if (this.util.contieneSoloNumeros(value)) {
+                if (!error.getText().contains(" Sin letras o  caracteres especiales ")) {
+                    error.setText(error.getText() + " Sin letras o  caracteres especiales ");
+                    error.setVisible(true);
+                }
+            }
+
+            if (! util.validateSizePhone(this.phone.getText())) {
+                this.phoneError.setText("Son 10 numeros*");
+                this.phoneError.setVisible(true);
+            }
+        }
+
+
+        if (!this.util.containSpecialCharactersId(ob.getText()) && !ob.getText().isBlank()&&this.util.contieneSoloNumeros(ob.getText())) {
+            error.setText("");
+            ob.getStyleClass().remove("errorInput");
+            error.setVisible(true);
+        }
+
+    }
 
     /**
      * Validates a string to ensure it does not contain numbers, special characters, is not blank, and does not start with a space.
@@ -543,7 +581,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
                 this.phoneError.setText("Obligatorio*");
                 this.phoneError.setVisible(true);
             }
-            if (util.validateSizePhone(this.phone.getText())) {
+            if (!util.validateSizePhone(this.phone.getText())) {
                 this.phoneError.setText("Son 10 caracteres*");
                 this.phoneError.setVisible(true);
             }
@@ -551,7 +589,7 @@ public class SingInView extends Header implements EventHandler<ActionEvent> {
                 this.emailError.setText("olbigatorio*");
                 this.emailError.setVisible(true);
             }
-            if (validateEmail(this.email.getText()) ) {
+            if (!validateEmail(this.email.getText()) ) {
                 this.emailError.setText("Debe contener @*");
                 this.emailError.setVisible(true);
             }

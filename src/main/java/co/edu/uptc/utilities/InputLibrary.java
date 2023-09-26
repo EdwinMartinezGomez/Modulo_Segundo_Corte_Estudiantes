@@ -151,6 +151,10 @@ public class InputLibrary {
     public boolean validateSizePhone(String phone){
         return phone.length() == 10;
     }
+    public boolean contieneSoloNumeros(String cadena) {
+        String regex = "^[0-9]+$";
+        return cadena.matches(regex);
+    }
     public boolean containsArr(String str){
         return str.contains("@");
     }

@@ -18,6 +18,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.util.Optional;
 
 
 public class ModifyPersonItems  extends  Header implements EventHandler<ActionEvent> {
@@ -420,11 +421,18 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
             }
 
             if (this.util.containSpecialCharactersId(value)) {
+                if (!error.getText().contains("caracteres especiales ")) {
+                    error.setText(error.getText() + "caracteres especiales ");
+                    error.setVisible(true);
+                }
+            }
+            if (this.util.contieneSoloNumeros(value)) {
                 if (!error.getText().contains(" Sin letras o  caracteres especiales ")) {
                     error.setText(error.getText() + " Sin letras o  caracteres especiales ");
                     error.setVisible(true);
                 }
             }
+
             if (! util.validateSizePhone(this.phone.getText())) {
                 this.phoneError.setText("Son 10 numeros*");
                 this.phoneError.setVisible(true);
@@ -509,81 +517,95 @@ public class ModifyPersonItems  extends  Header implements EventHandler<ActionEv
 
     @Override
     public void handle(ActionEvent e) {
-        if(e.getSource()==this.delete){
-            lgView.controller.getPersonController().removePerson(person);
-            lgView.controller.getAcountController().removeAcount(person.getAccount());
-            //lo quita de la tabla
-            lgView.loginListUsers.remove(person);
+        if (e.getSource() == this.delete) {
+            // Crear una alerta de confirmación para el botón "Delete"
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setHeaderText("Confirmación");
+            confirmationAlert.setContentText("¿Está seguro de que desea eliminar esta persona?");
 
-        }
-        if(e.getSource()==this.summit){
+            // Mostrar la alerta y esperar a que el usuario confirme o cancele
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
 
-
-            if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText())  && lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[1])){
-
-                //elimina
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // El usuario confirmó, realizar la eliminación aquí
                 lgView.controller.getPersonController().removePerson(person);
                 lgView.controller.getAcountController().removeAcount(person.getAccount());
-
-                //crea
-                boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(),person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue());
-                if (response) {
-                    this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
-                    this.message.setText("Añadido con éxito!");
-                } else {
-                    this.message.setText("Ha ocurrido un error!");
-                }
-                this.messageContainer.setVisible(true);
                 lgView.loginListUsers.remove(person);
-            }else if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) &&  lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[0]) && this.validateNames(this.nomEmpresa.getText())&& this.validateNames(this.cargo.getText())) {
+            }
+        }
 
-                //elimina
-                lgView.controller.getPersonController().removePerson(person);
-                lgView.controller.getAcountController().removeAcount(person.getAccount());
+        if (e.getSource() == this.summit) {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setHeaderText("Confirmación");
+            confirmationAlert.setContentText("¿Está seguro de que desea realizar esta acción?");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[1])) {
+
+                    //elimina
+                    lgView.controller.getPersonController().removePerson(person);
+                    lgView.controller.getAcountController().removeAcount(person.getAccount());
+
+                    //crea
+                    boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(), person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue());
+                    if (response) {
+                        this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
+                        this.message.setText("Añadido con éxito!");
+                    } else {
+                        this.message.setText("Ha ocurrido un error!");
+                    }
+                    this.messageContainer.setVisible(true);
+                    lgView.loginListUsers.remove(person);
+                } else if (this.validateNames(this.name.getText()) && this.validateNames(this.lastName.getText()) && lgView.singInView.validatePhone(this.phone.getText()) && lgView.singInView.validateEmail(this.email.getText()) && this.estadoEmp.getValue().equals(ESTADOS[0]) && this.validateNames(this.nomEmpresa.getText()) && this.validateNames(this.cargo.getText())) {
+
+                    //elimina
+                    lgView.controller.getPersonController().removePerson(person);
+                    lgView.controller.getAcountController().removeAcount(person.getAccount());
 
 
-                //crea
+                    //crea
 
-                boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(), person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue(),true,this.nomEmpresa.getText(),this.cargo.getText());
-                if (response) {
-                    this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
-                    this.message.setText("Añadido con éxito!");
+                    boolean response = this.lgView.controller.signin(this.name.getText(), this.lastName.getText(), person.getId(), this.phone.getText(), this.email.getText(), this.roles.getValue(), true, this.nomEmpresa.getText(), this.cargo.getText());
+                    if (response) {
+                        this.lgView.loginListUsers.addPerson(this.lgView.controller.getPersonController().findPersonById(person.getId()));
+                        this.message.setText("Añadido con éxito!");
+                    } else {
+                        this.message.setText("Ha ocurrido un error!");
+                    }
+                    this.messageContainer.setVisible(true);
                 } else {
-                    this.message.setText("Ha ocurrido un error!");
+                    this.message.setText("Los nombres no deben contener espacios al iniciar números o caracteres especiales.\n" +
+                            "Asegúrese de que el teléfono no contenga letras y que el correo electrónico tenga '@'.");
+                    this.messageContainer.setVisible(true);
                 }
-                this.messageContainer.setVisible(true);
-            } else {
-                this.message.setText("Los nombres no deben contener espacios al iniciar números o caracteres especiales.\n" +
-                        "Asegúrese de que el teléfono no contenga letras y que el correo electrónico tenga '@'.");
-                this.messageContainer.setVisible(true);
-            }
 
-            lgView.loginListUsers.remove(person);
-            if (this.name.getText().isBlank()) {
-                this.nameError.setText("Obligatorio*");
-                this.nameError.setVisible(true);
-            }
-            if (this.lastName.getText().isBlank()) {
-                this.lastNameError.setText("Obligatorio*");
-                this.lastNameError.setVisible(true);
-            }
-            if (this.phone.getText().isBlank()) {
-                this.phoneError.setText("Obligatorio*");
-                this.phoneError.setVisible(true);
-            }
-            if (! util.validateSizePhone(this.phone.getText())) {
-                this.phoneError.setText("Son 10 numeros , sin letras*");
-                this.phoneError.setVisible(true);
-            }
-            if (this.email.getText().isBlank() ) {
-                this.emailError.setText("olbigatorio*");
-                this.emailError.setVisible(true);
-            }
-            if (! singInView.validateEmail(this.email.getText()) ) {
-                this.emailError.setText("Debe contener @*");
-                this.emailError.setVisible(true);
-            }
+                lgView.loginListUsers.remove(person);
+                if (this.name.getText().isBlank()) {
+                    this.nameError.setText("Obligatorio*");
+                    this.nameError.setVisible(true);
+                }
+                if (this.lastName.getText().isBlank()) {
+                    this.lastNameError.setText("Obligatorio*");
+                    this.lastNameError.setVisible(true);
+                }
+                if (this.phone.getText().isBlank()) {
+                    this.phoneError.setText("Obligatorio*");
+                    this.phoneError.setVisible(true);
+                }
+                if (!util.validateSizePhone(this.phone.getText())) {
+                    this.phoneError.setText("Son 10 numeros , sin letras*");
+                    this.phoneError.setVisible(true);
+                }
+                if (this.email.getText().isBlank()) {
+                    this.emailError.setText("olbigatorio*");
+                    this.emailError.setVisible(true);
+                }
+                if (!singInView.validateEmail(this.email.getText())) {
+                    this.emailError.setText("Debe contener @*");
+                    this.emailError.setVisible(true);
+                }
 
+            }
         }
 
 
