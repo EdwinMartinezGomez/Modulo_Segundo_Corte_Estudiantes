@@ -1,0 +1,205 @@
+[
+  {
+    "id": "46389778",
+    "name": "Johana",
+    "lastname": "Torres Perez",
+    "phone": "3205959588",
+    "email": "johana13@gmail.com",
+    "account": {
+      "id": "46389778",
+      "userName": "johana.torres",
+      "password": "JKJfsdhf334",
+      "role": "PROFESSOR",
+      "email": "johana.torres@uptc.edu.co"
+    }
+  },
+  {
+    "id": "1006784563",
+    "name": "Jairo",
+    "lastname": "Riaño",
+    "phone": "32047899554",
+    "email": "Jairo123@gmail.com",
+    "account": {
+      "id": "1006784563",
+      "userName": "jairo.riaño",
+      "password": "10EBRsc",
+      "role": "PROFESSOR",
+      "email": "jairo.riaño@uptc.edu.co"
+    }
+  },
+  {
+    "id": "10953483",
+    "name": "Ivan",
+    "lastname": "Mendoza",
+    "phone": "3105965445",
+    "email": "Mendoz13@yahoo.es",
+    "account": {
+      "id": "10953483",
+      "userName": "ivan.mendoza",
+      "password": "HJ23jkil",
+      "role": "PROFESSOR",
+      "email": "ivan.mendoza@uptc.edu.co"
+    }
+  },
+  {
+    "id": "47865421",
+    "name": "Laura",
+    "lastname": "Castillo",
+    "phone": "3021478888",
+    "email": "Lau2303cas@outlook.co",
+    "account": {
+      "id": "47865421",
+      "userName": "laura.castillo",
+      "password": "Masfx83",
+      "role": "ADMINISTRATOR",
+      "email": "laura.castillo@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "32589",
+    "name": "Jose",
+    "lastname": "Salamanca",
+    "phone": "3206957947",
+    "email": "Salamca08jose@gmail.com",
+    "account": {
+      "id": "32589",
+      "userName": "jose.salamanca",
+      "password": "fh543YY",
+      "role": "STUDENT",
+      "email": "jose.salamanca@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "202210568",
+    "name": "manuel",
+    "lastname": "Martinez",
+    "phone": "3255954788",
+    "email": "manumartinez@outlook.co",
+    "account": {
+      "id": "202210568",
+      "userName": "manuel.martinez",
+      "password": "Masfx83",
+      "role": "STUDENT",
+      "email": "manuel.martinez@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "2020154",
+    "name": "Juan",
+    "lastname": "Velandia Fonseca",
+    "phone": "32519945548",
+    "email": "fons4ecavel@gmail.com",
+    "account": {
+      "id": "2020154",
+      "userName": "juan.velandia",
+      "password": "njksAPO293",
+      "role": "STUDENT",
+      "email": "juan.velandia@uptc.edu.co"
+    }
+  },
+  {
+    "id": "4387582",
+    "name": "Maria",
+    "lastname": "Torres",
+    "phone": "3204549488",
+    "email": "mariaTorres034@gmail.com",
+    "account": {
+      "id": "4387582",
+      "userName": "maria.torres",
+      "password": "48IAGqy",
+      "role": "SECRETARY",
+      "email": "maria.torres@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "12345",
+    "name": "Nino ",
+    "lastname": "Nakano",
+    "phone": "31059747558",
+    "email": "nikonakano045@gmail.com",
+    "account": {
+      "id": "12345",
+      "userName": "nino.nakano",
+      "password": "M1nitaCH1na",
+      "role": "STUDENT",
+      "email": "nino.nakano@uptc.edu.co"
+    }
+  },
+  {
+    "id": "696969",
+    "name": "Fredy",
+    "lastname": "Alarcon",
+    "phone": "320785947",
+    "email": "fredyalarcon@yahoo.es",
+    "account": {
+      "id": "696969",
+      "userName": "fredy.alarcon01",
+      "password": "12345",
+      "role": "ADMINISTRATOR",
+      "email": "fredy.alarcon01@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "2022159",
+    "name": "Maria",
+    "lastname": "Rodriguez Vega",
+    "phone": "302774487",
+    "email": "Mariavega04235@yahoo.es",
+    "account": {
+      "id": "2022159",
+      "userName": "maria.rodriguez01",
+      "password": "HJAkjsf234",
+      "role": "STUDENT",
+      "email": "maria.rodriguez01@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "123455",
+    "name": "Fredy",
+    "lastname": "Alarcon",
+    "phone": "305944575",
+    "email": "fredyalarcon@yahoo.es",
+    "account": {
+      "id": "123455",
+      "userName": "fredy.alarcon",
+      "password": "48IAGqy",
+      "role": "STUDENT",
+      "email": "fredy.alarcon@uptc.edu.co"
+    }
+  },
+  {
+    "egresado": false,
+    "id": "1035",
+    "name": "Maria",
+    "lastname": "Perez",
+    "phone": "3055459789",
+    "email": "Mariape9435@yahoo.es",
+    "account": {
+      "id": "1035",
+      "userName": "maria.perez",
+      "password": "35SCKqs",
+      "role": "STUDENT",
+      "email": "maria.perez@uptc.edu.co"
+    }
+  },
+  {
+    "id": "6378264",
+    "name": "Alvaro",
+    "lastname": "Perez",
+    "phone": "3109597489",
+    "email": "Alvarogood@yahoo.es",
+    "account": {
+      "id": "6378264",
+      "userName": "alvaro.perez",
+      "password": "34AWKug",
+      "role": "PROFESSOR",
+      "email": "alvaro.perez@uptc.edu.co"
+    }
+  }
+]
